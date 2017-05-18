@@ -1,3 +1,8 @@
+<?php
+$navActive = "index";
+$languepath = 3;
+require 'library/config.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -237,6 +242,7 @@
 <script src="assets/scripts/jquery.mCustomScrollbar.concat.min.js"></script> 
 <script src="assets/scripts/jquery.mobile-menu.min.js"></script><!-- Side Menu js --> 
 <script src="assets/scripts/counter.js"></script><!-- Counter js --> 
+<script src="assets/scripts/custom.js"></script><!-- Counter js --> 
 
 <!-- Put all Functions in functions.js --> 
 <script src="assets/scripts/functions.js"></script>

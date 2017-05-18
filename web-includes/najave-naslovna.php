@@ -4,96 +4,26 @@
                 <h2>Najavljujemo</h2>
             </div>
         </div>
-        <ul class="cs-bloggrid-slider-sm">
+         <ul class="cs-bloggrid-slider-sm">
+           <?php $articlesData = Blog::getArticlesForCategory(12);
+            foreach($articlesData['data'] as $article){
+            ?>
             <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="cs-blog blog-grid">
                 <div class="cs-media">
-                    <figure><a href="#"><img src="assets/extra-images/Blogs-grid-img1.jpg" alt=""></a><figcaption>athelitcs</figcaption></figure>
+                    <figure><a href="#"><img src="<?php echo Blog::getImageUrl($article['thumb_image']);?>" alt=""></a></figure>
                 </div>
                 <div class="cs-blog-text">
                     <div class="post-options">
-                        <span class="post-date">23.12.2014</span>
-                    </div>
-                    <div class="post-title"><h6><a href="#">Martin Luther King Jr. and  the best Understan</a></h6></div>
-                    <a href="#" class="cs-readmore-btn">Read more</a>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="cs-blog blog-grid">
-                <div class="cs-media">
-                    <figure><a href="#"><img src="assets/extra-images/Blogs-grid-img2.jpg" alt=""></a><figcaption>athelitcs</figcaption></figure>
-                </div>
-                <div class="cs-blog-text">
-                    <div class="post-options">
-                        <span class="post-date">23.12.2014</span>
+                        <span class="post-date"><?php echo date("d D", $article['ctime']); ?></span>
                     </div>
                     
-                    <div class="post-title"><h6><a href="#">Martin Luther King Jr. and  the best Understan</a></h6></div>
-                    <a href="#" class="cs-readmore-btn">Read more</a>
+                    <div class="post-title"><h6><a href="#"><?php echo $article['leed'];?></a></h6></div>
+                    <a href="<?php echo Blog::getArticleUrl().$article['url'];?>" class="cs-readmore-btn">Read more</a>
                 </div>
               </div>
             </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="cs-blog blog-grid">
-                <div class="cs-media">
-                    <figure><a href="#"><img src="assets/extra-images/Blogs-grid-img3.jpg" alt=""></a><figcaption>athelitcs</figcaption></figure>
-                </div>
-                <div class="cs-blog-text">
-                    <div class="post-options">
-                        <span class="post-date">23.12.2014</span>
-                    </div>
-                    
-                    <div class="post-title"><h6><a href="#">Martin Luther King Jr. and  the best Understan</a></h6></div>
-                    <a href="#" class="cs-readmore-btn">Read more</a>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="cs-blog blog-grid">
-                <div class="cs-media">
-                    <figure><a href="#"><img src="assets/extra-images/Blogs-grid-img1.jpg" alt=""></a><figcaption>athelitcs</figcaption></figure>
-                </div>
-                <div class="cs-blog-text">
-                    <div class="post-options">
-                        <span class="post-date">23.12.2014</span>
-                    </div>
-                    
-                    <div class="post-title"><h6><a href="#">Martin Luther King Jr. and  the best Understan</a></h6></div>
-                    <a href="#" class="cs-readmore-btn">Read more</a>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="cs-blog blog-grid">
-                <div class="cs-media">
-                    <figure><a href="#"><img src="assets/extra-images/Blogs-grid-img2.jpg" alt=""></a><figcaption>athelitcs</figcaption></figure>
-                </div>
-                <div class="cs-blog-text">
-                    <div class="post-options">
-                        <span class="post-date">23.12.2014</span>
-                    </div>
-                    
-                    <div class="post-title"><h6><a href="#">Martin Luther King Jr. and  the best Understan</a></h6></div>
-                    <a href="#" class="cs-readmore-btn">Read more</a>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="cs-blog blog-grid">
-                <div class="cs-media">
-                    <figure><a href="#"><img src="assets/extra-images/Blogs-grid-img3.jpg" alt=""></a><figcaption>athelitcs</figcaption></figure>
-                </div>
-                <div class="cs-blog-text">
-                    <div class="post-options">
-                        <span class="post-date">23.12.2014</span>
-                    </div>
-                    
-                    <div class="post-title"><h6><a href="#">Martin Luther King Jr. and  the best Understan</a></h6></div>
-                    <a href="#" class="cs-readmore-btn">Read more</a>
-                </div>
-              </div>
-            </li>
+            <?php } ?>
         </ul>
     </div>
 

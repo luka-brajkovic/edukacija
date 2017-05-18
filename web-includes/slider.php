@@ -1,14 +1,60 @@
-<div class="page-section" style="background:url(assets/extra-images/banner-img.jpg) no-repeat;background-size:cover;padding:212px 0;">
+<div class="page-section" style="background-size:cover;padding:0;">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="cs-column-text">
-						<span style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.8);color:#FFF;font-size:18px;margin-bottom:22px;">What would you like to learn?</span>
-						<h1 style="color:#ffffff !important;line-height:64px !important;text-transform:capitalize !important;">Brighton Experience</h1>
-						<p style="font-size:36px !important;line-height:42px !important;color:#FFF !important;font-weight:400 !important;margin-bottom:30px;">an inspiring place to work and study</p>
-						<a style="font-size:13px;font-weight:700;line-height:19px;padding:16px 28px;border-radius:50px;color:#FFF;text-decoration:none;outline:none;" class="cs-bgcolor" href="#">About Smart Study</a>
-					</div>
-				</div>
-			</div>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                       
+                        <ol class="carousel-indicators">
+                        <?php
+                        $slides = Slider::getForIndex();
+                        $i=1;
+                        $j=0;
+                        foreach ($slides as $slide){
+                        
+                        ?>
+                            <li data-target="#myCarousel" data-slide-to="<?php echo $j++;?>" class="<?php if ($i){
+                                echo 'active';
+                                $i=0;
+                            }?>
+                                "></li>
+                         
+                        <?php } ?>
+                        </ol>
+                       
+                        
+                        <div class="carousel-inner">
+                        <?php
+                        $slides = Slider::getForIndex();
+                        $i=1;
+                        foreach ($slides as $slide){
+                        
+                        ?>
+                            
+                            
+                            <div class="item <?php if ($i){
+                                echo 'active';
+                                $i=0;
+                            }?>
+                                ">
+                            <img src="<?php echo Slider::getImageUrl($slide['image']);?>" alt="">
+                            <div class="carousel-caption">
+                              <h3><?php echo $slide['title'];?></h3>
+                              <p><?php echo $slide['text'];?></p>
+                            </div>
+                          </div>
+
+                        <?php } ?>
+                        </div>
+
+                      
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                          <span class=""></span>
+                          <span class="sr-only"></span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                          <span class=""></span>
+                          <span class="sr-only"></span>
+                        </a>
+                    </div>		
+
+
 		</div>
 	</div>
