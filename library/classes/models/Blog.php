@@ -142,6 +142,17 @@ class Blog extends Model {
       return $data;
   }  
   
+  public static function getBlogCategoryByUrl($url) {
+      $db = Database::instance();
+      $select = $db->select()
+      ->from('blog_category')
+      ->where('url =  ?',$url)
+      ;
+      $data = $select->query()->fetch();
+      
+      return $data;
+  }  
+  
   public static function getLatestArticles($limit = 5) {
     $db = Database::instance();
     $select = $db->select()
@@ -379,7 +390,7 @@ class Blog extends Model {
   }
   
   public static function getCategoryUrl() {
-      return WEB_URL . "blog.php?category=";
+      return WEB_URL . "blog.php?url=";
   }
   
   

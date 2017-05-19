@@ -1,14 +1,14 @@
 <?php 
 
-class Course extends Model {
+class Seminar extends Model {
   
-  static protected $_tableName = "course";
+  static protected $_tableName = "seminar";
   
  
   public static function getImageUrl($image) {
    try {
-    if($image && is_file(IMAGES_PATH . "/course/" . $image)) {
-      return WEB_URL . "/pictures/course/" . $image;
+    if($image && is_file(IMAGES_PATH . "/seminar/" . $image)) {
+      return WEB_URL . "/pictures/seminar/" . $image;
     }
     else {
       return "";
@@ -19,7 +19,7 @@ class Course extends Model {
   } 
   
   public static function getImagePath() {
-    return IMAGES_PATH . "/course/";
+    return IMAGES_PATH . "/seminar/";
   }
   
   public static function getInfo($id) {
@@ -47,10 +47,34 @@ class Course extends Model {
    
  }
  
-  public static function getCourseByUrl($url) {
+  public static function getAllForFront($page = 1, $limit = 5) {
+    $offset = ($page - 1) * $limit;
+    $db = Database::instance();
+      
+      
+    $db   = Database::instance();
+    $select = $db->select()
+    ->from(self::$_tableName)
+    ->order('display_order')
+    ;
+    
+    $selectCount = clone($select);
+    $count = count($selectCount->query()->fetchAll());
+    
+    $select->limit($limit, $offset);
+    
+    
+    $data = $select->query()->fetchAll();
+    
+    
+    return array('data' => $data, 'count' => $count);  
+   
+ }
+ 
+  public static function getSeminarByUrl($url) {
       $db = Database::instance();
       $select = $db->select()
-      ->from('course')
+      ->from('seminar')
       ->where('url =  ?',$url)
       ;
       $data = $select->query()->fetch();
@@ -67,54 +91,19 @@ class Course extends Model {
     ->order('display_order')
     ->limit(6);
     ;
-    if(!Website::isLoggedUser()){
-        $select->where('is_public = 0');
-    }
-    
     
     $data = $select->query()->fetchAll();
     
     return $data;
    
  }
- public static function getAllForFront($page = 1, $limit = 5) {
-    $offset = ($page - 1) * $limit;
-    $db = Database::instance();
-      
-      
-    $db   = Database::instance();
-    $select = $db->select()
-    ->from(self::$_tableName)
-    ->order('display_order')
-    ;
-    if(!Website::isLoggedUser()){
-        $select->where('is_public = 0');
-    }
-    
-    
-    $selectCount = clone($select);
-    $count = count($selectCount->query()->fetchAll());
-    
-    $select->limit($limit, $offset);
-    
-    
-    $data = $select->query()->fetchAll();
-    
-    
-    return array('data' => $data, 'count' => $count);  
-   
- } 
- 
- 
+  
   
    public static function create($data) {
        
       $data['url']        = Utils::generateUrl($data['title']);
       $data['image']     = Utils::imageUpload('image', self::getImagePath(), $data['url'] . "");
       
-      if(isset($data['files']) && !empty($data['files'])) {
-      $data['files'] = implode(",", $data['files']);
-      }
 
       return parent::create($data);
    }
@@ -126,8 +115,8 @@ class Course extends Model {
    * @return boolean
    */
    
-     public static function getCourseUrl() {
-      return WEB_URL . "course.php?url=";
+     public static function getSeminarUrl() {
+      return WEB_URL . "seminar.php?url=";
   }
   
    
@@ -139,13 +128,5 @@ class Course extends Model {
   public static function updateOrder($items) {
     self::updateDisplayOrder($items,self::$_tableName);
     }
-    
-    
-  public static function getAllUsersForCourseAdding($id) {
-    self::updateDisplayOrder($items,self::$_tableName);
-    }
-    
-    
-  
   
 }

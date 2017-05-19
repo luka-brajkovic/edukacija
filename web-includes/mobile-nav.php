@@ -27,8 +27,12 @@
 			</li>
 			<li><a href="#">Novosti</a>
 				<ul>
-					<li><a href="#">Aktivnosti</a></li>
-					<li><a href="#">Najave</a></li>
+					  <?php
+                                            foreach (Blog::getAllCategories() as $menucategory){
+                                            ?>
+                                            
+                                            <li><a href="<?php echo Blog::getCategoryUrl().$menucategory['url']?>"><?php echo $menucategory['title'];?></a></li>
+                                          <?php } ?>
 				</ul>
 			</li>
 			<li>

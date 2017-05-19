@@ -74,10 +74,10 @@
                                         <div class="form-group">
                                             <label><?php echo $lang['table']['icon'];?></label>
                                             <select class="form-control" name="icon">
-                                                <option value="calendar">calendar</option>
-                                                <option value="user">user</option>      
-                                                <option value="globe">globe</option>      
-                                                <option value="trophy ">trophy</option>      
+                                                <option value="F128">sestar</option>
+                                                <option value="F118">mikroskop</option>      
+                                                <option value="F11B">bedz</option>      
+                                                <option value="F11D ">Diplomac</option>      
                                             </select>
                                         </div>
                                         

@@ -39,6 +39,7 @@ $lang = array (
            "faq" => "Frequently asked questions",
            "services" => "Services",
            "course" => "Course",
+           "seminar" => "Seminar",
 
             ),
         "table" => array(
@@ -84,7 +85,8 @@ $lang = array (
             "livevideourl" => "Live Video Url",
             "videourl" => "Video Url",
             "livevideostartend" => "Live Video start - end",
-           
+            "seminar" => "Seminar",
+            "ispublic" => "Is public ?",
             
             "vieworder" => "View Order",
             "viewappointment" => "View Appointment",
@@ -202,6 +204,7 @@ $lang = array (
             "addfaq" => "Add Frequently asked questions",
             "addservices" => "Add Services",
             "addcourse" => "Add Course",
+            "addseminar" => "Add Seminar",
             "download" => "Download",
             
             "editaministrator" => "Edit Administrator",
@@ -232,6 +235,7 @@ $lang = array (
             "editfaq" => "Edit Frequently asked questions",
             "editservices" => "Edit Services",
             "editcourse" => "Edit Course",
+            "editseminar" => "Edit Seminar",
             
             
             

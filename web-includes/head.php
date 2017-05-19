@@ -12,6 +12,8 @@
 <link href="assets/css/color.css" rel="stylesheet">
 <link href="assets/css/widget.css" rel="stylesheet">
 <link href="assets/css/responsive.css" rel="stylesheet">
+<link href="cs-smartstudy-event-plugin.css" rel="stylesheet">
+<link href="assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <!-- <link href="assets/css/bootstrap-rtl.css" rel="stylesheet"> Uncomment it if needed! -->
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

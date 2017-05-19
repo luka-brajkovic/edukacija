@@ -61,7 +61,7 @@ $article = Blog::getArticleByUrl($url);
                     </div>
                  </div>
 	              <div class="cs-main-post">
-                    <div class="cs-media"><figure><img src="assets/extra-images/main-post-img1.jpg" alt=""/></figure></div>
+                          <div class="cs-media"><figure><img src="<?php echo Blog::getImageUrl($article['image']);?>" alt=""/></figure></div>
                   </div>
                   <?php echo $article['text']?>
 	            </div>

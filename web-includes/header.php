@@ -13,7 +13,23 @@
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     	<div class="cs-user">
                             <ul>
-                                <li><a data-target="#cs-login" href="remote.html" data-toggle="modal"><i class="icon-login"></i>Login</a></li>
+                                <li>
+                                    <?php 
+                                    if(!Website::isLoggedUser()){
+                                    ?>
+                                    <a data-target="#cs-login" href="remote.html" data-toggle="modal"><i class="icon-login"></i>Login</a>
+                                    <?php
+                                    }
+                                    else{
+                                    ?>
+                                    <a href="<?php echo WEB_URL;?>work.php?action=logout"><i class="icon-log-out"></i>Logout</a>
+                                    <?php
+                                    } 
+                                    ?>
+                                </li>
+                                
+                              
+<!--                                
                                 <li>
                                     <div class="cs-user-login">
                                         <div class="cs-media">
@@ -25,7 +41,7 @@
                                             <li><a href="#"><i class="icon-log-out"></i> Logout</a></li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                         <div class="cs-modal">
@@ -38,19 +54,20 @@
                                         <div class="modal-body">
                                             <h4>User Sign in</h4>
                                             <div class="cs-login-form">
-                                                <form>
+                                                <form name="login-form" method="POST" action="<?php echo WEB_URL;?>work.php" id="login-form" class="clearfix">
+                                                <input type="hidden" name="action" value="login">
                                                     <div class="input-holder">
                                                         <label for="cs-username-1">
-                                                            <strong>USERNAME</strong>
+                                                            <strong>Email</strong>
                                                             <i class="icon-add-user"></i>
-                                                            <input type="text" class="" id="cs-username-1" placeholder="Type desired username">
+                                                            <input type="text" class="" id="cs-username-1" name="email"  placeholder="Type desired username">
                                                         </label>
                                                     </div>
                                                     <div class="input-holder">
                                                         <label for="cs-login-password-1">
                                                             <strong>Password</strong>
                                                             <i class="icon-lock"></i>
-                                                            <input type="password" id="cs-login-password-1" placeholder="******">
+                                                            <input type="password" id="cs-login-password-1" name="password"  placeholder="******">
                                                         </label>
                                                     </div>
                                                     <div class="input-holder">
@@ -141,8 +158,12 @@
                                     <li class="menu-item-has-children"><a href="#">Novosti</a>
                                         <span>Novosti</span>
                                     	<ul>
-                                        	<li><a href="#">Najave</a></li>
-                                            <li><a href="#">Aktivnosti</a></li>
+                                            <?php
+                                            foreach (Blog::getAllCategories() as $menucategory){
+                                            ?>
+                                            
+                                            <li><a href="<?php echo Blog::getCategoryUrl().$menucategory['url']?>"><?php echo $menucategory['title'];?></a></li>
+                                          <?php } ?>
                                         </ul>
                                     </li>
                                     <li><a href="#">Medjunarodna saradnja</a><span>Medjunarodna saradnja</span></li>

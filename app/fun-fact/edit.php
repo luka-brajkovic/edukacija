@@ -79,10 +79,10 @@
                                         <div class="form-group">
                                             <label><?php echo $lang['table']['icon'];?></label>
                                             <select class="form-control" name="icon">
-                                                <option <?php echo $funFact['icon']== "calendar" ? "selected='selected'" : "";?> value="calendar">calendar</option>
-                                                <option <?php echo $funFact['icon']== "user" ? "selected='selected'" : "";?> value="user">user</option>      
-                                                <option <?php echo $funFact['icon']== "globe" ? "selected='selected'" : "";?> value="globe">globe</option>      
-                                                <option <?php echo $funFact['icon']== "trophy" ? "selected='selected'" : "";?> value="trophy ">trophy</option>      
+                                                <option <?php echo $funFact['icon']== "F128" ? "selected='selected'" : "";?> value="F128">sestar</option>
+                                                <option <?php echo $funFact['icon']== "F118" ? "selected='selected'" : "";?> value="F118">mikroskop</option>      
+                                                <option <?php echo $funFact['icon']== "F11B" ? "selected='selected'" : "";?> value="F11B">bedz</option>      
+                                                <option <?php echo $funFact['icon']== "F11D" ? "selected='selected'" : "";?> value="F11D ">Diplomac</option>      
                                             </select>
                                         </div>
                                          

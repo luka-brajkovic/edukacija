@@ -8,7 +8,7 @@
     $request  = Request::instance();
    
     
-    $active = 'html-box';
+    $active = 'seminar';
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,13 +33,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        <?php echo $lang['table']['addcourse'];?>
-                        <small><?php echo $lang['table']['course'];?></small>
+                        <?php echo $lang['table']['addseminar'];?>
+                        <small><?php echo $lang['table']['seminar'];?></small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#"><i class="fa fa-user"></i><?php echo $lang['table']['course'];?></a></li>
-                        <li class="active"><?php echo $lang['table']['addcourse'];?></li>
+                        <li><a href="#"><i class="fa fa-user"></i><?php echo $lang['table']['seminar'];?></a></li>
+                        <li class="active"><?php echo $lang['table']['addseminar'];?></li>
                     </ol>
                 </section>
 
@@ -80,19 +80,10 @@
                                         
                                         
                                         
-                                        <div class="form-group">
-                                            <label><?php echo $lang['table']['videourl'];?></label>
-                                            <input type="text"  class="form-control" name="video_url" placeholder="Title ..."/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label><?php echo $lang['table']['livevideourl'];?></label>
-                                            <input type="text"  class="form-control" name="live_video_url" placeholder="Title ..."/>
-                                        </div>
-                                        
+                                       
                                          <div class="box-header">
                                             <h3 class="box-title">
-                                              <?php echo $lang['table']['livevideostartend'];?>
+                                              <?php echo $lang['table']['date'];?>
                                             </h3>
                                         </div>
                                          
@@ -100,21 +91,14 @@
                                         <div class=''>
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker6'>
-                                                    <input name="live_start_date" type='text' class="form-control" />
+                                                    <input name="date" type='text' class="form-control" />
                                                    
                                                        
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=''>
-                                            <div class="form-group">
-                                                <div class='input-group date' id='datetimepicker7'>
-                                                    <input name="live_end_date" type='text' class="form-control" />
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
                                         
                                         </div>
 
@@ -125,14 +109,14 @@
                                             
                                         <div class="box-header">
                                             <h3 class="box-title">
-                                              <?php echo $lang['table']['icon'];?>
+                                              <?php echo $lang['table']['image'];?>
                                             </h3>
                                         </div>
                                         
                                         
                                         <div class="box-body">
                                               <div class="form-group">
-                                                    <label for="image"> <?php echo $lang['table']['icon'];?></label>
+                                                    <label for="image"> <?php echo $lang['table']['image'];?></label>
                                                     <input type="file" id="image" name="image">
                                                     
                                                 </div>
@@ -140,46 +124,13 @@
                                         </div>
                                         
                                         
-                                        <div class="form-group">
-                                            <label><?php echo $lang['table']['ispublic'];?></label>
-                                            <select class="form-control" name="is_public">
-                                                <option  value="0">No</option>
-                                                <option  value="1">Yes</option>      
-                                                 
-                                            </select>
-                                        </div>
                                         
-                                        <div class="form-group">
-                                            
-                                            <label>Chose Product: </label>
-                                            <select id="products" class="chosen-select">
-                                              <?php
-                                                  $files = Settings::getUploadedFiles();
-                                                
-                                                foreach($files as $file) {
-                                                  ?>
-                                                <option value="<?php echo $file['file_name']; ?>"><?php echo $file['file_name']; ?></option>
-                                                  <?php
-                                                }
-                                              ?>
-                                            </select>
-                                            
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-primary add-to-page">Add</a>
-                                            
-                                            <div class="added-products">
-                                              
-                                                    
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                        <br /><br /><br /><br /><br /><br /><br />
                                         
                                         
                                         
                                         
                                        <div class="box-footer">
-                                          <button type="submit" class="btn btn-primary"><?php echo $lang['table']['addcourse'];?></button>
+                                          <button type="submit" class="btn btn-primary"><?php echo $lang['table']['addseminar'];?></button>
                                        </div>
                                         
                                        
@@ -204,8 +155,8 @@
             $(function() {
               
                 CKEDITOR.replace('editor1');
-                $('*[name=live_start_date]').appendDtpicker();
-                $('*[name=live_end_date]').appendDtpicker();
+                $('*[name=date]').appendDtpicker();
+              
             });
             
 

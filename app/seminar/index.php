@@ -7,12 +7,12 @@
         Administrator::redirectToLogin();
     }
     
-    $active     = 'course';
+    $active     = 'seminar';
     $request    = Request::instance();
     
     $data       = $request->getAllParams();
    
-    $calltoactions  = Course::getAll();
+    $calltoactions  = Seminar::getAll();
     
     
 ?>
@@ -20,7 +20,7 @@
 <html>
     <head>
         
-        <title><?php echo $lang['side-bar']['course'];?> | <?php echo $applicationConfig['name']; ?></title>
+        <title><?php echo $lang['side-bar']['seminar'];?> | <?php echo $applicationConfig['name']; ?></title>
         <?php include '../includes/head.php'; ?>
     </head>
     <body class="skin-blue">
@@ -37,13 +37,13 @@
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1><?php echo $lang['side-bar']['course'];?>
+                    <h1><?php echo $lang['side-bar']['seminar'];?>
                         <small>Home</small>
                     </h1>
                     
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active"><?php echo $lang['side-bar']['course'];?></li>
+                        <li class="active"><?php echo $lang['side-bar']['seminar'];?></li>
                     </ol>
                 </section>
 
@@ -85,7 +85,7 @@
                             <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">
-                                      <?php echo $lang['side-bar']['course'];?>
+                                      <?php echo $lang['side-bar']['seminar'];?>
                                     </h3>
                                 </div><!-- /.box-header -->
                                 
@@ -107,7 +107,7 @@
                                               <td>
                                                   
                                                   <?php
-                                                    $image = Course::getImageUrl($calltoaction['image']);
+                                                    $image = Seminar::getImageUrl($calltoaction['image']);
                                                     if($image) {
                                                       ?>
                                                       <img width="80" src="<?php echo $image; ?>" />
@@ -119,10 +119,9 @@
                                                   ?>
                                               </td>
                                               <td>
-                                                <a href="<?php echo APP_URL . 'course/edit.php?id=' . $calltoaction['id']; ?>" class="btn btn-sm btn-primary"><?php echo $lang['table']['edit'];?></a>
+                                                <a href="<?php echo APP_URL . 'seminar/edit.php?id=' . $calltoaction['id']; ?>" class="btn btn-sm btn-primary"><?php echo $lang['table']['edit'];?></a>
                                                 <a href="#" class="btn btn-sm btn-info handle"><?php echo $lang['table']['reorder'];?></a>
-                                                <a href="<?php echo  APP_URL ."course/cours_user.php?id=" . $calltoaction['id'];?>" class="btn btn-sm btn-info handle"><?php echo "add user to course";?></a>
-                                                <?php   echo "<a href=". APP_URL ."course/work.php?action=remove&id=" . $calltoaction['id']." class='btn btn-sm btn-danger'>". $lang['table']['remove']."</a>"; ?>
+                                                <?php   echo "<a href=". APP_URL ."seminar/work.php?action=remove&id=" . $calltoaction['id']." class='btn btn-sm btn-danger'>". $lang['table']['remove']."</a>"; ?>
                                                     
                                               </td>
                                             </tr>
@@ -133,7 +132,7 @@
                                 </div><!-- /.box-body -->
                                  
                             </div><!-- /.box -->
-                            <a href="<?php echo APP_URL; ?>course/add.php" class="btn btn-lg btn-success"><?php echo $lang['table']['addcourse'];?></a>
+                            <a href="<?php echo APP_URL; ?>seminar/add.php" class="btn btn-lg btn-success"><?php echo $lang['table']['addseminar'];?></a>
                         </div>
                     </div>
 

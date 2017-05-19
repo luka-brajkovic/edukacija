@@ -16,9 +16,9 @@
 
     case "add":
       $data = $request->getAllParams();
-      var_dump($data['files']);
-      Course::create($data);
-      $request->redirect(APP_URL . "course/index.php?success=add");
+     
+      Seminar::create($data);
+      $request->redirect(APP_URL . "seminar/index.php?success=add");
       break;
     
     case "edit":
@@ -28,55 +28,47 @@
       
       
      
-      $calltoaction = new View('course',  $id );
+      $calltoaction = new View('seminar',  $id );
     
       
-      $image          = Utils::imageUpload('image', Course::getImagePath(),$data['title'] . "");
+      $image          = Utils::imageUpload('image', Seminar::getImagePath(),$data['title'] . "");
       if(!empty($image)) {
         $calltoaction->image = $image;
       }
       var_dump($calltoaction->image);
       $calltoaction->text = $data['text'];
       $calltoaction->title = $data['title'];
-      $calltoaction->video_url = $data['video_url'];
-      $calltoaction->live_video_url = $data['live_video_url'];
-      $calltoaction->live_end_date = $data['live_end_date'];
-      $calltoaction->live_start_date = $data['live_start_date'];
-      $calltoaction->is_public = $data['is_public'];
-      
-     
-      $data['files'] = implode(",", $data['files']);
-      $calltoaction->files = $data['files'];
+      $calltoaction->date = $data['date'];
       
       
       
-      
+
       $calltoaction->mtime       = time();
       $calltoaction->save();
-      $request->redirect(APP_URL . "course/index.php?success=edit");
+      $request->redirect(APP_URL . "seminar/index.php?success=edit");
       break;
       
     case "remove-image":
       $id           = $request->getParam('id');
-      $calltoaction      = new View('course', $id);
+      $calltoaction      = new View('seminar', $id);
       if($calltoaction->image) {
-        $path = Course::getImagePath() . $calltoaction->image;
+        $path = Seminar::getImagePath() . $calltoaction->image;
         $calltoaction->image = "";
           $calltoaction->save();
         if(file_exists($path)) {
           unlink($path);
         }
       }
-      $request->redirect(APP_URL . "course/edit.php?id=" . $id);
+      $request->redirect(APP_URL . "seminar/edit.php?id=" . $id);
       break;
       
 
     case "remove":
       $id = $request->getParam('id');
         
-      $calltoaction      = new View('course', $id);
+      $calltoaction      = new View('seminar', $id);
       if($calltoaction->image) {
-        $path = Course::getImagePath() . $calltoaction->image;
+        $path = Seminar::getImagePath() . $calltoaction->image;
         $calltoaction->image = "";
           $calltoaction->save();
         if(file_exists($path)) {
@@ -85,14 +77,14 @@
       }  
         
         
-      Course::remove($id);
-      $request->redirect(APP_URL . "course/index.php?success=remove");
+      Seminar::remove($id);
+      $request->redirect(APP_URL . "seminar/index.php?success=remove");
       break;
 
   
       case "order":
       $items    = $request->getParam('item');
       
-      Course::updateOrder($items);
+      Seminar::updateOrder($items);
       break;
   }

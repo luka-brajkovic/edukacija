@@ -7,16 +7,16 @@
     
     $request  = Request::instance();
     $id       = $request->getParam('id');
-    $calltoaction  = Course::getInfo($id);
+    $calltoaction  = Seminar::getInfo($id);
     
     
-    $active = 'html-box';
+    $active = 'seminar';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         
-        <title><?php echo $lang['table']['editcourse'];?> | <?php echo $applicationConfig['name']; ?></title>
+        <title><?php echo $lang['table']['editseminar'];?> | <?php echo $applicationConfig['name']; ?></title>
         <?php include '../includes/head.php'; ?>
     </head>
     <body class="skin-blue">
@@ -34,13 +34,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        <?php echo $lang['table']['course'];?>- <?php echo $calltoaction['title']; ?>
-                        <small><?php echo $lang['table']['editcourse'];?></small>
+                        <?php echo $lang['table']['seminar'];?>- <?php echo $calltoaction['title']; ?>
+                        <small><?php echo $lang['table']['editseminar'];?></small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#"><i class="fa fa-user"></i> <?php echo $lang['table']['course'];?></a></li>
-                        <li class="active"><?php echo $lang['table']['editcourse'];?></li>
+                        <li><a href="#"><i class="fa fa-user"></i> <?php echo $lang['table']['seminar'];?></a></li>
+                        <li class="active"><?php echo $lang['table']['editseminar'];?></li>
                     </ol>
                 </section>
 
@@ -75,40 +75,32 @@
                                         
                                         <div class="box-header">
                                             <h3 class="box-title">
-                                              <?php echo $lang['table']['icon'];?>
+                                              <?php echo $lang['table']['image'];?>
                                             </h3>
                                         </div>
 
                                         <div class="box-body">
                                               <div class="form-group">
-                                                    <label for="image"><?php echo $lang['table']['icon'];?></label>
+                                                    <label for="image"><?php echo $lang['table']['image'];?></label>
                                                     <input type="file" id="image" name="image">
                                                     <p class="help-block">
                                                         <?php if($calltoaction['image']): ?>
-                                                        <img style="border: 1px solid #000;" src="<?php echo Course::getImageUrl($calltoaction['image']); ?>" width="150" /> | 
-                                                        <a href="<?php echo Course::getImageUrl($calltoaction['image']); ?>" target="_blank">View Original icon</a> | 
+                                                        <img style="border: 1px solid #000;" src="<?php echo Seminar::getImageUrl($calltoaction['image']); ?>" width="150" /> | 
+                                                        <a href="<?php echo Seminar::getImageUrl($calltoaction['image']); ?>" target="_blank">View Original icon</a> | 
                                                         <a href="work.php?action=remove-image&id=<?php echo $id; ?>" 
                                                            class="remove-action"
                                                            data-remove-msg="Are you sure want to remove this image?">Remove Image</a>
                                                         <?php endif; ?>
                                                     </p>
                                            </div>
-
+                                        </div>
                                        
-                                       <div class="form-group">
-                                            <label><?php echo $lang['table']['videourl'];?></label>
-                                            <input type="text" value="<?php echo $calltoaction['video_url']; ?>" class="form-control" name="video_url" placeholder="video url ..."/>
-                                        </div>
-                                        
-                                       <div class="form-group">
-                                            <label><?php echo $lang['table']['livevideourl'];?></label>
-                                            <input type="text" value="<?php echo $calltoaction['live_video_url']; ?>" class="form-control" name="live_video_url" placeholder="live video url ..."/>
-                                        </div>
+                                      
                                             
                                             
                                         <div class="box-header">
                                             <h3 class="box-title">
-                                              <?php echo $lang['table']['livevideostartend'];?>
+                                              <?php echo $lang['table']['date'];?>
                                             </h3>
                                         </div>
                                          
@@ -116,77 +108,24 @@
                                         <div class=''>
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker6'>
-                                                    <input name="live_start_date" type='text' value="<?php echo $calltoaction['live_start_date']; ?>" class="form-control" />
+                                                    <input name="date" type='text' value="<?php echo $calltoaction['date']; ?>" class="form-control" />
                                                    
                                                        
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=''>
-                                            <div class="form-group">
-                                                <div class='input-group date' id='datetimepicker7'>
-                                                    <input name="live_end_date" type='text' value="<?php echo $calltoaction['live_end_date']; ?>" class="form-control" />
                                                     
                                                 </div>
                                             </div>
                                         </div>
-                                        
+  
                                         </div>
                                         
                                         <input type="hidden" name="id" value="<?php echo $id; ?>" />
                                         
                                         
-                                        <div class="form-group">
-                                            <label><?php echo $lang['table']['ispublic'];?></label>
-                                            <select class="form-control" name="is_public">
-                                                <option <?php echo $calltoaction['is_public']== "0" ? "selected='selected'" : "";?> value="0">No</option>
-                                                <option <?php echo $calltoaction['is_public']== "1" ? "selected='selected'" : "";?> value="1">Yes</option>      
-                                                 
-                                            </select>
-                                        </div>
-                                        
-                                             
-                                        <div class="form-group">
-                                            
-                                            <label>Chose Product:</label>
-                                            <select id="products" class="chosen-select">
-                                              <?php
-                                                $files = Settings::getUploadedFiles();
-                                                $productsForPrint = array();
-                                                foreach($files as $file) {
-                                                  $productsForPrint[$file['file_name']] =$file['file_name'];
-                                                  ?>
-                                                <option value="<?php echo $file['file_name']; ?>"><?php echo $file['file_name']; ?></option>
-                                                  <?php
-                                                }
-                                              ?>
-                                            </select>
-                                            
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-primary add-to-page">Add</a>
-                                            
-                                            <div class="added-products">
-                                              <?php
-                                                
-                                                if($calltoaction['files']) {
-                                                  $productsSaved = explode(",", $calltoaction['files']);
-                                                  foreach($productsSaved as $prodID) {    
-                                                    ?>
-                                                    <div class='single-product'><span><?php echo $productsForPrint[$prodID]; ?></span><a href='javascript:void(0);' class='remove-single-prod'> - Remove</a><input type='hidden' name='files[]' value='<?php echo $prodID; ?>' /></div>
-                                                    <?php
-                                                  }
-                                                }
-                                              ?>
-                                                    
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                        <br /><br /><br /><br /><br /><br /><br />
+                                      
                                        
                                         
                                         <div class="box-footer">
-                                          <button type="submit" class="btn btn-primary"><?php echo $lang['table']['editcourse'];?></button>
+                                          <button type="submit" class="btn btn-primary"><?php echo $lang['table']['editseminar'];?></button>
                                       </div>
                                         
                                     </form>
@@ -208,8 +147,8 @@
         <script type="text/javascript">
             $(function() {        
                 CKEDITOR.replace('editor1');
-                $('*[name=live_start_date]').appendDtpicker();
-                $('*[name=live_end_date]').appendDtpicker();
+                $('*[name=date]').appendDtpicker();
+               
             });
         </script>
         
