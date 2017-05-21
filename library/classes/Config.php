@@ -8,8 +8,8 @@ class Config {
         'db' => array(
             'host'     => 'localhost',
             'username' => 'root',
-            'password' => '',
-            'dbname'   => 'education',
+            'password' => 'yvdv217w',
+            'dbname'   => 'edukacija',
             'charset' => 'UTF8'
         ),
         'cache' => array(
@@ -25,7 +25,7 @@ class Config {
             'lang_file' => LANG_FILE
         ),
         'application' => array(
-            'assets_path'   => '/edukacija/edukacija/app',
+            'assets_path'   => '/edukacija/app',
             'name'          => 'Geviner'
         )
     );
