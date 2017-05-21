@@ -4,10 +4,9 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <ul class="top-nav nav-left">
-                            <li><a href="#">Kursevi</a></li>
-                            <li><a href="#">Novosti</a></li>
-                            <li><a href="#">Aktivnosti</a></li>
-                            <li><a href="#">O nama</a></li>
+                            <li><a href="courses.php">Kursevi</a></li>
+                            <li><a href="blog">Novosti</a></li>
+                            <li><a href="strana.php?url=o-nama">O nama</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -141,21 +140,21 @@
                             <nav class="main-navigation">
                                 <ul>
                                     <li><a href="index.php">Naslovna</a><span>Dobrodosli</span></li>
-                                    <li class="menu-item-has-children"><a href="#">O nama</a>
+                                    <li class="menu-item-has-children"><a href="strana.php?url=o-nama">O nama</a>
                                         <span>Saznajte vise</span>
                                         <ul>
-                                            <li><a href="#">Cilj</a></li>
-                                            <li><a href="#">Statut</a></li>
-                                            <li><a href=" #">Istorijat</a></li>
+                                            <li><a href="strana.php?url=cilj">Cilj</a></li>
+                                            <li><a href="strana.php?url=statut">Statut</a></li>
+                                            <li><a href="strana.php?url=istorijat">Istorijat</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Kursevi</a>
+                                    <li class="menu-item-has-children"><a href="courses.php">Kursevi</a>
                                         <span>Kursevi i seminari</span>
                                     	<ul>
-                                        	<li><a href="#">Seminari</a></li>
+                                        	<li><a href="seminars.php">Seminari</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Novosti</a>
+                                    <li class="menu-item-has-children"><a href="blog">Novosti</a>
                                         <span>Novosti</span>
                                     	<ul>
                                             <?php
@@ -166,8 +165,8 @@
                                           <?php } ?>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Medjunarodna saradnja</a><span>Medjunarodna saradnja</span></li>
-                                    <li><a href="#">Kontakt</a><span>Kontaktirajte nas</span></li>
+                                    <li><a href="strana.php?url=medjunarodna-saradnja">Medjunarodna saradnja</a><span>Medjunarodna saradnja</span></li>
+                                    <li><a href="contact.php">Kontakt</a><span>Kontaktirajte nas</span></li>
                                     <li class="cs-search-area">
                                         <div class="cs-menu-slide">
                                             <div class="mm-toggle">
