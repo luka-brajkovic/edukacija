@@ -250,3 +250,6 @@ function debug($data, $die = true) {
 
 
  } 
+$bcmain = "Naslovna";
+$grupa = "";
+$clan = "";

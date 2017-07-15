@@ -123,6 +123,7 @@
                                               <td><?php echo $user['active'] ? 'Active' : 'Inactive'; ?></td>
                                               <td>
                                                 <a href="<?php echo APP_URL . 'user/edit.php?id=' . $user['id']; ?>" class="btn btn-primary"></i><?php echo $lang['table']['edit'];?></a>
+                                                <a href="<?php echo APP_URL . 'user/user_tests.php?user_id=' . $user['id']; ?>" class="btn btn-primary">User Attendings</a>
                                                 <a href="<?php echo APP_URL . 'user/work.php?action=remove&id=' . $user['id']; ?>" 
                                                    class="btn btn-danger remove-action" 
                                                    data-remove-msg="Are you sure want to remove this user?"></i><?php echo $lang['table']['remove'];?></a>

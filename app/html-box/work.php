@@ -31,7 +31,7 @@
       $calltoaction = new View('html_box',  $id );
     
       
-      $image          = Utils::imageUpload('image', HtmlBox::getImagePath(),$data['title'] . "");
+      $image          = Utils::imageUpload('image', HtmlBox::getImagePath(),Utils::generateUrl($data['title'])  . "");
       if(!empty($image)) {
         $calltoaction->image = $image;
       }

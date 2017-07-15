@@ -1,5 +1,3 @@
-
-
 <?php
     require '../../library/config.php';
     $status = Administrator::isAdminLogged(FALSE);
@@ -90,7 +88,8 @@
                                 </div><!-- /.box-header -->
                                 
                                 <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover resizeble" id="category-table" parent="<?php echo $parentID; ?>">
+                                    <table class="table table-hover resizeble_course" id="category-table" parent="<?php echo $parentID; ?>">
+                                        <input type="hidden" id="table-for-order" value="1" >
                                         <tr class="header">
                                             <th data-field="id">ID</th>
                                             <th data-field="name"><?php echo $lang['table']['name'];?></th>
@@ -120,8 +119,12 @@
                                               </td>
                                               <td>
                                                 <a href="<?php echo APP_URL . 'seminar/edit.php?id=' . $calltoaction['id']; ?>" class="btn btn-sm btn-primary"><?php echo $lang['table']['edit'];?></a>
+                                                <a href="<?php echo APP_URL . 'seminar/course_attendings.php?id=' . $calltoaction['id']; ?>" class="btn btn-sm btn-primary">Seminar Attendings</a>
+                                                <a href="<?php echo APP_URL . 'seminar/statistic.php?id=' . $calltoaction['id']; ?>" class="btn btn-sm btn-primary">Statistic</a>
                                                 <a href="#" class="btn btn-sm btn-info handle"><?php echo $lang['table']['reorder'];?></a>
-                                                <?php   echo "<a href=". APP_URL ."seminar/work.php?action=remove&id=" . $calltoaction['id']." class='btn btn-sm btn-danger'>". $lang['table']['remove']."</a>"; ?>
+                                                <a href="<?php echo  APP_URL ."seminar/cours_user.php?id=" . $calltoaction['id'];?>" class="btn btn-sm btn-info handle"><?php echo "add user to seminar";?></a>
+                                                <a href="<?php echo  APP_URL ."seminar/course_questions.php?course_id=" . $calltoaction['id'];?>" class="btn btn-sm btn-info "><?php echo "Questions for course ( " .$calltoaction['a_num']. " )";?></a>
+                                                <?php if (!$calltoaction['a_num']){  echo "<a href=". APP_URL ."seminar/work.php?action=remove&id=" . $calltoaction['id']." class='btn btn-sm btn-danger'>". $lang['table']['remove']."</a>"; }?>
                                                     
                                               </td>
                                             </tr>

@@ -128,7 +128,7 @@
       
       $id = $request->getParam('id');
       $article = Model::find('blog_article', $id);
-      
+      $db->query("DELETE FROM blog_article_tag WHERE blog_article_id = ?", $id);
       $categoryID = $article->blog_category_id;
       $imagePath = Blog::getImagePath() . $article->image;
       

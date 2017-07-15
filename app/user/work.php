@@ -41,6 +41,10 @@
       //remove admin
       $data = $request->getAllParams();
       $id   = $data['id'];
+      
+      $db->query("DELETE FROM course_user WHERE user_id = ?", $id);
+      $db->query("DELETE FROM user_course_answers WHERE user_id = ?", $id);
+      $db->query("DELETE FROM user_course_attending WHERE user_id = ?", $id);
       User::remove($id);
       $request->redirect(APP_URL . "user/index.php?success=remove");
 

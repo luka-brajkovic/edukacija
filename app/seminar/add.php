@@ -14,7 +14,7 @@
 <html>
     <head>
         
-        <title><?php echo $lang['table']['addhtmlbox'];?></title>
+        <title><?php echo $lang['table']['addseminar'];?></title>
         <?php include '../includes/head.php'; ?>
   
     </head>
@@ -78,12 +78,26 @@
                                         </div>
                                         
                                         
+                                        <div class="form-group">
+                                            <label>Html Url</label>
+                                            <input type="text"  class="form-control" name="html_url" placeholder="Html url ..."/>
+                                        </div>
                                         
                                         
-                                       
+                                        
+                                        <div class="form-group">
+                                            <label><?php echo $lang['table']['videourl'];?></label>
+                                            <input type="text"  class="form-control" name="video_url" placeholder="video url ..."/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><?php echo $lang['table']['livevideourl'];?></label>
+                                            <input type="text"  class="form-control" name="live_video_url" placeholder="live video url ..."/>
+                                        </div>
+                                        
                                          <div class="box-header">
                                             <h3 class="box-title">
-                                              <?php echo $lang['table']['date'];?>
+                                              <?php echo $lang['table']['livevideostartend'];?>
                                             </h3>
                                         </div>
                                          
@@ -91,14 +105,21 @@
                                         <div class=''>
                                             <div class="form-group">
                                                 <div class='input-group date' id='datetimepicker6'>
-                                                    <input name="date" type='text' class="form-control" />
+                                                    <input name="live_start_date" type='text' class="form-control" />
                                                    
                                                        
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                      
+                                        <div class=''>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker7'>
+                                                    <input name="live_end_date" type='text' class="form-control" />
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
                                         
                                         </div>
 
@@ -109,22 +130,79 @@
                                             
                                         <div class="box-header">
                                             <h3 class="box-title">
-                                              <?php echo $lang['table']['image'];?>
+                                              <?php echo $lang['table']['icon'];?>
                                             </h3>
                                         </div>
                                         
                                         
                                         <div class="box-body">
                                               <div class="form-group">
-                                                    <label for="image"> <?php echo $lang['table']['image'];?></label>
+                                                    <label for="image"> <?php echo $lang['table']['icon'];?></label>
                                                     <input type="file" id="image" name="image">
                                                     
                                                 </div>
 
                                         </div>
                                         
+                                    
+                                        <div class="form-group">
+                                            
+                                            <label>Chose Files: </label>
+                                            <select id="products" class="chosen-select">
+                                              <?php
+                                                  $files = Settings::getUploadedFiles();
+                                                
+                                                foreach($files as $file) {
+                                                  ?>
+                                                <option value="<?php echo $file['file_name']; ?>"><?php echo $file['file_name']; ?></option>
+                                                  <?php
+                                                }
+                                              ?>
+                                            </select>
+                                            
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-primary add-to-page">Add</a>
+                                            
+                                            <div class="added-products">
+                                              
+                                             
+                                            </div>
+                                            
+                                            
+                                                      
+                                        <div class="form-group">
+                                            <label>Number of  tries per User</label>
+                                            <input type="number"  class="form-control" name="number_of_tries_per_user" placeholder="Number of tries per user ..."/>
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                            <label>Sucess procentage</label>
+                                            <input type="number" class="form-control" name="success_percentage" placeholder="Procentage ..."/>
+                                        </div>
+                                            
+                                            
                                         
+                                           
+                                        <div class="form-group">
+                                            <label>Test instruction</label>
+                                            <textarea id="editor3" class="form-control" name="test_instruction" rows="3" placeholder="Test instruction ..."></textarea>
+                                        </div>
+                                            
+                                      
+                                                
+                                        <div class="form-group">
+                                            <label>Date</label>
+                                             <input type="date" name="start_available">
+                                        </div>
+                                            
+                                      
+                                      
+                                      
+                                            
+                                            
+                                            
+                                        </div>
                                         
+                                        <br /><br /><br /><br /><br /><br /><br />
                                         
                                         
                                         
@@ -155,8 +233,9 @@
             $(function() {
               
                 CKEDITOR.replace('editor1');
-                $('*[name=date]').appendDtpicker();
-              
+                CKEDITOR.replace('editor3');                
+                $('*[name=live_start_date]').appendDtpicker();
+                $('*[name=live_end_date]').appendDtpicker();
             });
             
 

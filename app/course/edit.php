@@ -96,6 +96,11 @@
 
                                        
                                        <div class="form-group">
+                                            <label>Html url</label>
+                                            <input type="text" value="<?php echo $calltoaction['html_url']; ?>" class="form-control" name="html_url" placeholder="Html url ..."/>
+                                        </div>
+                                       
+                                       <div class="form-group">
                                             <label><?php echo $lang['table']['videourl'];?></label>
                                             <input type="text" value="<?php echo $calltoaction['video_url']; ?>" class="form-control" name="video_url" placeholder="video url ..."/>
                                         </div>
@@ -137,19 +142,12 @@
                                         <input type="hidden" name="id" value="<?php echo $id; ?>" />
                                         
                                         
-                                        <div class="form-group">
-                                            <label><?php echo $lang['table']['ispublic'];?></label>
-                                            <select class="form-control" name="is_public">
-                                                <option <?php echo $calltoaction['is_public']== "0" ? "selected='selected'" : "";?> value="0">No</option>
-                                                <option <?php echo $calltoaction['is_public']== "1" ? "selected='selected'" : "";?> value="1">Yes</option>      
-                                                 
-                                            </select>
-                                        </div>
+                                       
                                         
                                              
                                         <div class="form-group">
                                             
-                                            <label>Chose Product:</label>
+                                            <label>Chose Files:</label>
                                             <select id="products" class="chosen-select">
                                               <?php
                                                 $files = Settings::getUploadedFiles();
@@ -177,8 +175,43 @@
                                                   }
                                                 }
                                               ?>
+                                                        
                                                     
                                             </div>
+                                            
+                                            
+                                        <div class="form-group">
+                                            <label>Number of  tries per User</label>
+                                            <input type="number" value="<?php echo $calltoaction['number_of_tries_per_user']; ?>" class="form-control" name="number_of_tries_per_user" placeholder="Number of  tries per User ..."/>
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                            <label>Sucess procentage</label>
+                                            <input type="number" value="<?php echo $calltoaction['success_percentage']; ?>" class="form-control" name="success_percentage" placeholder="Sucess procentage ..."/>
+                                        </div>
+                                            
+                                      
+                                           
+                                        <div class="form-group">
+                                            <label>Test instruction</label>
+                                            <textarea id="editor3" class="form-control" name="test_instruction" rows="3" placeholder="Test instruction ..."><?php echo $calltoaction['test_instruction']; ?></textarea>
+                                        </div>
+                                            
+                                        
+                                                
+                                        <div class="form-group">
+                                            <label>Available from</label>
+                                            <input type="date" name="start_available" value="<?php echo $calltoaction['start_available']; ?>">
+                                        </div>
+                                            
+                                      
+                                           
+                                        <div class="form-group">
+                                            <label>Available to</label>
+                                             <input type="date" name="end_available" value="<?php echo $calltoaction['end_available']; ?>">
+                                        </div>
+                                            
+                                      
                                             
                                         </div>
                                         
@@ -208,6 +241,7 @@
         <script type="text/javascript">
             $(function() {        
                 CKEDITOR.replace('editor1');
+                CKEDITOR.replace('editor3');
                 $('*[name=live_start_date]').appendDtpicker();
                 $('*[name=live_end_date]').appendDtpicker();
             });

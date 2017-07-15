@@ -89,4 +89,9 @@ class Page extends Model {
     return $select->query()->fetch();
   }
   
+  public static function setPageUrl() {
+  
+    return WEB_URL."strana.php?url=";
+  }
+  
 }

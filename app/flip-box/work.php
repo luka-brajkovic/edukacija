@@ -31,7 +31,7 @@
       $calltoaction = new View('flip_box',  $id );
     
       
-      $image          = Utils::imageUpload('icon', FlipBox::getImagePath(),$data['title'] . "");
+      $image          = Utils::imageUpload('icon', FlipBox::getImagePath(), Utils::generateUrl($data['title']) . "");
       if(!empty($image)) {
         $calltoaction->icon = $image;
       }

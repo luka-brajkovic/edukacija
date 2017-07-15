@@ -26,7 +26,7 @@ class Config {
         ),
         'application' => array(
             'assets_path'   => '/edukacija/app',
-            'name'          => 'Geviner'
+            'name'          => 'Edukacija'
         )
     );
    

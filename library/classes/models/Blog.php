@@ -220,8 +220,6 @@ class Blog extends Model {
     $select = $db->select()
       ->from('blog_article')
       ->order('ctime DESC')
-      ->where('show_on_homepage = 1')
-      ->limit(6)
       ;
     
     $data = $select->query()->fetchAll();

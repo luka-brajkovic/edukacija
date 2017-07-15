@@ -10,6 +10,7 @@
 <link href="style.css" rel="stylesheet">
 <link href="cs-smartstudy-plugin.css" rel="stylesheet">
 <link href="assets/css/color.css" rel="stylesheet">
+<link href="assets/css/custom.css" rel="stylesheet">
 <link href="assets/css/widget.css" rel="stylesheet">
 <link href="assets/css/responsive.css" rel="stylesheet">
 <link href="cs-smartstudy-event-plugin.css" rel="stylesheet">

@@ -83,3 +83,16 @@ a.control_next {
   width: 160px;
   font-size: 18px;
 }
+
+.add-opacity:hover {
+  opacity: 0.8;
+}
+
+.pagination > .active > a{
+    color:white !important;
+    
+}
+
+.black-text-footer {
+    color: black !important;
+}

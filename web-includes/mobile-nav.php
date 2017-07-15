@@ -1,44 +1,16 @@
 <div id="mobile-menu">
         <ul>
-            <li>
-                <div class="mm-search">
-                    <form id="search" name="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control simple" placeholder="Search ..." name="srch-term" id="srch-term">
-					   <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="icon-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </li>
-            <li class="active"><a href="index.php">Naslovna</a></li>
+            
+             <li><a href="<?php echo WEB_URL."index.php";?>">Naslovna</a></li>
 			<li><a href="#">O nama</a>
-				<ul>
-					<li><a href="#">Cilj</a></li>
-					<li><a href="#">Statut</a></li>
-                    <li><a href="#">Istorijat</a></li>
-				</ul>
+				
 			</li>
-			<li><a href="#">Kursevi</a>
-				<ul>
-					<li><a href="#">Seminari</a></li>
-				</ul>
-			</li>
-			<li><a href="#">Novosti</a>
-				<ul>
-					  <?php
-                                            foreach (Blog::getAllCategories() as $menucategory){
-                                            ?>
-                                            
-                                            <li><a href="<?php echo Blog::getCategoryUrl().$menucategory['url']?>"><?php echo $menucategory['title'];?></a></li>
-                                          <?php } ?>
-				</ul>
-			</li>
-			<li>
-                <a href="#">Medjunarodna saradnja</a>
-			</li>
-			<li><a href="#">Konatkt</a>
-			</li>
+                         <?php if(Website::isLoggedUser()){?>
+                                    <li class=""><a href="<?php echo WEB_URL."courses.php";?>">Kursevi</a></li>
+                         <?php } ?>
+			<li><a href="<?php echo WEB_URL."seminars.php";?>">Seminari</a></li>
+			<li><a href="<?php echo WEB_URL."strana.php?url=medjunarodna-saradnja";?>">Međunarodna saradnja</a></li>
+                        <li><a href="<?php echo WEB_URL."contact.php";?>">Kontakt</a></li>
+                        
         </ul>
     </div>

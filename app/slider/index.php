@@ -88,7 +88,7 @@
                                         </tr>
                                         <?php 
                                           
-                                          $objects = slider::getAllGallerys();
+                                          $objects = Slider::getAllGallerys();
                                           foreach($objects as $object) {
                                             ?>
                                             <tr class="table-row" id="item_<?php echo $object['id']; ?>">

@@ -47,7 +47,7 @@ class User extends Model {
       return array('status' => false, 'message' => 'Korisnik sa ovom email adresom vec postoji');
     }
     
-    if($data['password'] != $data['password_confirm']) {
+    if($data['password'] != $data['confirm_password']) {
       return array('status' => false, 'message' => 'Sifre se ne podudaraju');
     }
  
@@ -158,7 +158,7 @@ class User extends Model {
     );
   }
   
-  public static function checkUserCredentials($email, $password, $loginAuto = TRUE) {
+    public static function checkUserCredentials($email, $password, $loginAuto = TRUE) {
       $db = Database::instance();
       $select = $db->select()
               ->from('user')
@@ -168,6 +168,37 @@ class User extends Model {
               ;
       if($adminData = $select->query()->fetch()) {
           $adminID = $adminData['id'];
+          
+          if(!$adminData['did_agree']){
+              return array("to" => true , "id" => $adminData['id']);
+          }
+          
+          if($loginAuto) {
+              Website::loginUser($adminData);
+          }
+          return $adminID;
+      }
+      $_SESSION['message'] = 'Korisnik ne postoji ili nije aktiviran';
+      $_SESSION['status']  = 'danger';
+      return FALSE;
+  }
+  
+  
+    public static function LoginUserAfterAgree($email, $password, $loginAuto = TRUE) {
+      $db = Database::instance();
+      $select = $db->select()
+              ->from('user')
+              ->where('email = ?', $email)
+              ->where('password = ?', $password)
+              //->where('active = ?', '1')
+              ;
+      if($adminData = $select->query()->fetch()) {
+          $adminID = $adminData['id'];
+          
+          if(!$adminData['did_agree']){
+              return array("to" => true , "id" => $adminData['id']);
+          }
+          
           if($loginAuto) {
               Website::loginUser($adminData);
           }

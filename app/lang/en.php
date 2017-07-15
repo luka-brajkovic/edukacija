@@ -14,6 +14,7 @@ $lang = array (
            "orders" => "Orders",
            "users" => "Users",
            "pages" => "Pages",
+           "leksions" => "Leksions",
            "footer" => "Footer",
            "reference" => "Reference",
            "homepage" => "Homepage",
@@ -87,6 +88,9 @@ $lang = array (
             "livevideostartend" => "Live Video start - end",
             "seminar" => "Seminar",
             "ispublic" => "Is public ?",
+            "selectall" => "Select All",
+            "back" => "Back",
+            "pages" => "Pages",
             
             "vieworder" => "View Order",
             "viewappointment" => "View Appointment",
@@ -205,6 +209,7 @@ $lang = array (
             "addservices" => "Add Services",
             "addcourse" => "Add Course",
             "addseminar" => "Add Seminar",
+            "addleksion" => "Add Leksion",
             "download" => "Download",
             
             "editaministrator" => "Edit Administrator",
@@ -236,6 +241,7 @@ $lang = array (
             "editservices" => "Edit Services",
             "editcourse" => "Edit Course",
             "editseminar" => "Edit Seminar",
+            "editleksion" => "Edit Leksion",
             
             
             

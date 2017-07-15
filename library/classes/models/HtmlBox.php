@@ -50,7 +50,7 @@ class HtmlBox extends Model {
   
    public static function create($data) {
 
-      $data['image']     = Utils::imageUpload('image', self::getImagePath(), $data['title'] . "");
+      $data['image']     = Utils::imageUpload('image', self::getImagePath(), Utils::generateUrl($data['title'])  . "");
 
       return parent::create($data);
    }

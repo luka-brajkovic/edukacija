@@ -1,31 +1,35 @@
 <header id="header" class=""> 
-		<div class="top-bar">
+    <div class="top-bar" style="background-color: #b5b5b5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <ul class="top-nav nav-left">
-                            <li><a href="courses.php">Kursevi</a></li>
-                            <li><a href="blog">Novosti</a></li>
-                            <li><a href="strana.php?url=o-nama">O nama</a></li>
-                        </ul>
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                      
                     </div>
-                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                     	<div class="cs-user">
                             <ul>
-                                <li>
+                                
                                     <?php 
                                     if(!Website::isLoggedUser()){
                                     ?>
+                                    <li style="border: none">
                                     <a data-target="#cs-login" href="remote.html" data-toggle="modal"><i class="icon-login"></i>Login</a>
+                                    </li>
                                     <?php
                                     }
                                     else{
+                                    $user = Website::getLoggedUserInfo();
                                     ?>
+                                    <li class="active" style="border: none"><a href="<?php echo WEB_URL;?>profile.php"><i class="icon-gear"></i><?php echo $user['first_name']." ".$user['last_name'];?> </a></li>
+                                    <li style="border: none">
                                     <a href="<?php echo WEB_URL;?>work.php?action=logout"><i class="icon-log-out"></i>Logout</a>
+                                    </li>
                                     <?php
                                     } 
                                     ?>
-                                </li>
+                                    
+                                    
+                                
                                 
                               
 <!--                                
@@ -126,89 +130,45 @@
                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                         <div class="cs-logo cs-logo-dark">
                             <div class="cs-media">
-                                <figure><a href="index.html"><img src="assets/images/cs-logo.png" alt="" /></a></figure>
+                                <figure><a href="index.php"><img src="assets/images/cs-logo.png" alt="" /></a></figure>
                             </div>
                         </div>
                         <div class="cs-logo cs-logo-light">
                             <div class="cs-media">
-                                <figure><a href="index.html"><img src="assets/images/cs-logo-light.png" alt="" /></a></figure>
+                                <figure><a href="index.php"><img src="assets/images/cs-logo-light.png" alt="" /></a></figure>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                         <div class="cs-main-nav pull-right">
                             <nav class="main-navigation">
-                                <ul>
-                                    <li><a href="index.php">Naslovna</a><span>Dobrodosli</span></li>
-                                    <li class="menu-item-has-children"><a href="strana.php?url=o-nama">O nama</a>
-                                        <span>Saznajte vise</span>
-                                        <ul>
-                                            <li><a href="strana.php?url=cilj">Cilj</a></li>
-                                            <li><a href="strana.php?url=statut">Statut</a></li>
-                                            <li><a href="strana.php?url=istorijat">Istorijat</a></li>
-                                        </ul>
+                                <ul style="margin-top: 10px">
+                                    <li><a href="index.php">Naslovna</a></li>
+                                    <li class=""><a href="<?php echo Page::setPageUrl()."o-nama";?>">O nama</a>
+                                    
+                                        
                                     </li>
-                                    <li class="menu-item-has-children"><a href="courses.php">Kursevi</a>
-                                        <span>Kursevi i seminari</span>
-                                    	<ul>
-                                        	<li><a href="seminars.php">Seminari</a></li>
-                                        </ul>
+                                    <?php if(Website::isLoggedUser()){?>
+                                    <li class=""><a href="<?php echo WEB_URL."courses.php";?>">Kursevi </a>
+                                      
                                     </li>
-                                    <li class="menu-item-has-children"><a href="blog">Novosti</a>
-                                        <span>Novosti</span>
-                                    	<ul>
-                                            <?php
-                                            foreach (Blog::getAllCategories() as $menucategory){
-                                            ?>
-                                            
-                                            <li><a href="<?php echo Blog::getCategoryUrl().$menucategory['url']?>"><?php echo $menucategory['title'];?></a></li>
-                                          <?php } ?>
-                                        </ul>
+                                    <?php } ?>
+                                    <li class=""><a href="<?php echo WEB_URL."seminars.php";?>">Seminari</a>
+                                       
                                     </li>
-                                    <li><a href="strana.php?url=medjunarodna-saradnja">Medjunarodna saradnja</a><span>Medjunarodna saradnja</span></li>
-                                    <li><a href="contact.php">Kontakt</a><span>Kontaktirajte nas</span></li>
-                                    <li class="cs-search-area">
+                                    <li><a href="<?php echo WEB_URL."strana.php?url=medjunarodna-saradnja";?>">Međunarodna saradnja</a></li>
+                                    <li><a href="<?php echo WEB_URL."contact.php";?>" >Kontakt</a></li>
+                                    <li class="cs-search-area" style="margin-top: -10px">
                                         <div class="cs-menu-slide">
                                             <div class="mm-toggle">
                                                 <i class="icon-align-justify"></i>
                                             </div>            
                                         </div>
-                                        <div class="search-area">
-                                            <a href="#"><i class="icon-search2"></i></a>
-                                            <form>
-                                                <div class="input-holder">
-                                                    <i class="icon-search2"></i>
-                                                    <input type="text" placeholder="Enter any keyword">
-                                                    <label class="cs-bgcolor">
-                                                        <i class="icon-search5"></i>
-                                                        <input type="submit" value="search">
-                                                    </label>
-                                                </div>
-                                            </form>
-                                        </div>
+                                      
                                     </li>
                                 </ul>
                             </nav>
-                            <div class="cs-search-area hidden-md hidden-lg">
-                                <div class="cs-menu-slide">
-                                    <div class="mm-toggle">
-                                        <i class="icon-align-justify"></i>
-                                    </div>            
-                                </div>
-                                <div class="search-area">
-                                    <a href="#"><i class="icon-search2"></i></a>
-                                    <form>
-                                        <div class="input-holder">
-                                            <i class="icon-search2"></i>
-                                            <input type="text" placeholder="Enter any keyword">
-                                            <label class="cs-bgcolor">
-                                                <i class="icon-search5"></i>
-                                                <input type="submit" value="search">
-                                            </label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>

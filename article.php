@@ -25,20 +25,7 @@ $article = Blog::getArticleByUrl($url);
 	<!-- Banner Start --> 
 	<!-- Sub Header End -->
 	<!-- Breadcrumb Start -->
-	<div class="page-section" style="border-bottom:1px solid #f4f4f4;">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<ul class="cs-breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Vesti</a></li>
-						<li><a href="#"><?php echo $article['title']?></a></li>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include 'web-includes/breadcrumb.php'; ?>
 	<!-- Breadcrumb End -->   
 	<!-- Main Start -->
 	<div class="main-section">

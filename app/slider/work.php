@@ -69,7 +69,7 @@
       $object->mtime       = time();
       
       
-      $image = Utils::imageUpload(Slider::IMAGE_FIELD_NAME, Slider::getImagePath(), $object->title);
+      $image = Utils::imageUpload(Slider::IMAGE_FIELD_NAME, Slider::getImagePath(), Utils::generateUrl($object->title));
       $object->image = $image;
 
       $object->save();
@@ -85,11 +85,11 @@
       $object = Model::find('slider_slide', $id);
       
       $objectID = $object->slider_id;
-      $imagePath = slider::getImagePath() . $object->image;
       
-      
+      $imagePath = Slider::getImagePath() . $object->image;
+    
       $db->query("DELETE FROM slider_slide WHERE id = ?", $id);
-      
+  
       if(is_file($imagePath)) {
         unlink($imagePath);
       }

@@ -7,10 +7,15 @@
     
     $request  = Request::instance();
     $id       = $request->getParam('id');
-    $calltoaction  = Course::getInfo($id);
+    $usersData  = Course::GetUsersForCourse($id);
     
+    $selectedUsers = array();
+    foreach ($usersData['selected'] as $selected) {
+        $selectedUsers[] = $selected['user_id'];
+    }
     
-    $active = 'html-box';
+   
+    $active = 'course';
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,36 +65,74 @@
                                         <div class="form-group" >
                                             
                                             <select id="my-select" multiple="multiple" multiple >
-                                                <option>1<option>
-                                                <option>2<option>
-                                                <option>3<option>
-                                                <option>4<option>
-                                                <option>5<option>
-                                                <option>6<option>                   
-                                                <option>1<option>
-                                                <option>2<option>
-                                                <option>3<option>
-                                                <option>4<option>
-                                                <option>5<option>
-                                                <option>6<option>                   
-                                                <option>1<option>
-                                                <option>2<option>
-                                                <option>3<option>
-                                                <option>4<option>
-                                                <option>5<option>
-                                                <option>6<option>                   
+                                              <?php 
+                                              foreach ($usersData['allusers'] as $user){                                          
+                                              ?>
+                                                
+                                                <option value="<?php echo $user['id'];?>" 
+                                                        <?php
+                                                      if (in_array($user['id'], $selectedUsers)){
+                                                          echo 'selected';
+                                                      }
+                                                        ?>
+                                                        >
+                                                    <?php echo $user['first_name']." ".$user['last_name'];?>
+                                                </option>
+                                                
+                                              <?php } ?>
                                             </select>
+                                           
+                                            
                                             
                                         </div>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
+                                      
                                     </form>
+                                    
+                                   
+                                    
+                                    
+                                    
+                                    
+                                      
+                                        
+                                       <div class="box-footer" >
+                                           <form action="work.php">
+                                           <input type="hidden" value="select-all-users-for-course" name="action" >
+                                           <input type="hidden" value="<?php echo $id;?>" name="course_id" >
+                                           <button type="submit" class="btn btn-primary"><?php echo $lang['table']['selectall'];?></button>
+                                           </form>
+                                       </div>
                                 </div><!-- /.box-body -->
+                                
+                                <div id="update-user">
+                                  <table class="table table-hover "  parent="<?php echo $parentID; ?>">
+                                        <input type="hidden" id="table-for-order" value="1" >
+                                        <tr class="header">
+                                            <th data-field="id">user ID</th>
+                                            <th data-field="name"><?php echo $lang['table']['name'];?></th>
+                                            <th data-field="name">trays</th>
+                                        </tr>
+                                        <?php
+                                        $usersoncourse = Seminar::GetUsersForCourseAndNumOfTry($id);
+                                        foreach ($usersoncourse as $useroncourse){
+                                        ?>
+                                     
+                                     <tr>
+                                         <td><?php echo $useroncourse['user_id'];?></td>
+                                         <td><?php echo $useroncourse['first_name']." ".$useroncourse['last_name'];?></td>
+                                         <td><input type="number" id="find-<?php echo $useroncourse['id'];?>" value="<?php echo $useroncourse['course_number_of_trys']; ?>"> <button class="btn btn-primary" onclick="updateUserTry(<?php echo $useroncourse['id'];?>);">potvrdi</button></td>
+                                     </tr>
+                                     
+                                        <?php
+                                        }
+                                        ?>
+                                        
+                                    </table>
+                                </div>
+                                
+                                
                             </div><!-- /.box -->
+                             <a href="<?php echo APP_URL; ?>course/index.php" class="btn btn-lg btn-success"><?php echo $lang['table']['back'];?></a>
                         </div><!--/.col (right) -->
                         
                     </div><!-- /.row -->
@@ -108,11 +151,41 @@
             $(function() {        
                 $('#my-select').multiSelect(
                         {
+                            
                             selectableHeader: "<div class='custom-header'>Nemaju Pristup</div>",
                             selectionHeader: "<div class='custom-header'>Imaju Pristup</div>",
                         }        
                 );
             });
+            
+           $('#my-select').multiSelect({
+              afterSelect: function(values){
+                $.ajax({url: "work.php?action=add-user-to-course&courseid=<?php echo $id;?>&userid="+values, success: function(result){ 
+                    updateTable();    
+              }});
+            
+              },
+              afterDeselect:function(values){
+                $.ajax({url: "work.php?action=remove-user-from-course&courseid=<?php echo $id;?>&userid="+values, success: function(result){
+                    updateTable();
+                }});
+              
+        }
+        });
+        
+        function updateUserTry(id){
+               num = $('#find-'+id).val();
+               $.ajax({url: "work.php?action=ubdate-user-try&id="+id+"&num="+num, success: function(result){
+                       console.log(result);
+              }});
+        }
+        
+        function updateTable(){
+              $.ajax({url: "work.php?action=ubdate-user-table&id=<?php echo $id;?>", success: function(result){
+                       $("#update-user").html(result);
+              }});
+        }
+        
         </script>
         
     </body>
