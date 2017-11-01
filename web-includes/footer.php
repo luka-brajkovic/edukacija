@@ -1,5 +1,5 @@
 <footer id="footer" style="background-color: #b5b5b5 !important"> 
-    <div class="cs-footer-widgets" style="padding: 35px 0 19px;">
+<!--    <div class="cs-footer-widgets" style="padding: 35px 0 19px;">
             <div class="container">
                 <div class="row">
                   
@@ -25,13 +25,13 @@
                 </div>
             </div>
 		</div>
-      
+      -->
         <div class="cs-copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="copyright-text">
-                            <p>© 2017 SmartStudy . All Rights Reserved.</p>
+                            <p><?php echo $settings['copyright_text'];?></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

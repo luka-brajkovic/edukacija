@@ -5,6 +5,8 @@ $request = Request::instance();
 $request    = Request::instance();
 $url    = $request->getParam('url');
 $article = Blog::getArticleByUrl($url);
+$bcgrupa = "Vesti";
+$bcclan =  $article['title'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,15 +34,15 @@ $article = Blog::getArticleByUrl($url);
 	  <div class="page-section">
 	    <div class="container">
 	      <div class="row">
-	        <div class="page-content col-lg-8 col-md-8 col-sm-12 col-xs-12">
+	        <div class="page-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	          <div class="row">
 	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="cs-blog-post">
                     <div class="post-author">
                         
                         <div class="post-holder">
-                            <span><?php echo $article['title']?></span>
-                            <span class="post-date"><?php echo date("d m y", $article['ctime']); ?></span>
+                            <h1 style="text-align: left"><?php echo $article['title']?></h1>
+                            <span class="post-date"><i class="icon-uniF103"></i><?php echo date("d.m.y.", $article['ctime']); ?></span>
                          
                         </div>
                     </div>
@@ -54,321 +56,28 @@ $article = Blog::getArticleByUrl($url);
 	            </div>
                 <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="cs-tags">
-                        <h6>Post Tags</h6>
+                        <?php  $tags = Blog::getAllTagsForArticle($article['id']) ;
+                        if (!$tags[0]['tag']==""){
+                        ?>
+                        <h6>Tagovi</h6>
+                      
                         <ul>
-                           <?php $tags = Blog::getAllTagsForArticle($article['id']) ; 
+                           <?php
                            foreach ($tags as $tag){?>
                             <li><a href="#"><?php echo $tag['tag'];?></a></li>
                            <?php } ?>
                         </ul>
+                          <?php } ?>
                     </div>
                 </div>
-                <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="cs-about-author">
-                        <div class="cs-media">
-                            <figure><a href="#"><img src="assets/extra-images/about-author-img1.jpg" alt=""/></a></figure>
-                        </div>
-                        <div class="cs-text">
-                        <div class="post-title">
-                            <h6 class="cs-color">CHRISTIE N. SHOCKELY</h6>
-                            <span>CEO FOUNDER</span>
-                        </div>
-                        <p>Diet and health, human osteology, paleopathology/ epidemiology, human evolution, disease ecology, human adaptation, Stable Isotope Analysis,</p>
-                        <div class="cs-social-media">
-                           <ul>
-                                <li><a href="#" data-original-title="facebook"><i class="icon-facebook2"></i></a></li>
-                                <li><a href="#" data-original-title="pinterest"><i class=" icon-pinterest-p"></i></a></li>
-                                <li><a href="#" data-original-title="twitter"><i class="icon-twitter2"></i></a></li>
-                                <li><a href="#" data-original-title="google"><i class="icon-google4"></i></a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="cs-section-title"><h3>Related Blog</h3></div>
-                </div>
-                <ul class="cs-blog-grid-slider">
-                    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="cs-blog masonry">
-                          <div class="cs-text">
-                           <div class="cs-post-comments"><span>10</span></div>
-                           <span><em class="cs-color">Jon Westenberg</em> in University Life</span>
-                           <div class="cs-post-title"><h2><a href="#">Tortor eleifend et interdum rhoncus</a></h2></div>
-                           <span>January 26, 2016</span>
-                          </div>
-                          <div class="cs-media">
-                           <figure><a href="#"><img alt="" src="assets/extra-images/masonry-img-4.jpg"></a></figure>
-                          </div>
-                         </div>
-                    </li>
-                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="cs-blog masonry">
-                          <div class="cs-text">
-                           <div class="cs-post-comments"><span>10</span></div>
-                           <span><em class="cs-color">Jon Westenberg</em> in University Life</span>
-                           <div class="cs-post-title"><h2><a href="#">Tortor eleifend et interdum rhoncus</a></h2></div>
-                           <span>January 26, 2016</span>
-                          </div>
-                          <div class="cs-media">
-                           <figure><a href="#"><img alt="" src="assets/extra-images/masonry-img-4.jpg"></a></figure>
-                          </div>
-                         </div>
-                    </li>
-                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="cs-blog masonry">
-                          <div class="cs-text">
-                           <div class="cs-post-comments"><span>10</span></div>
-                           <span><em class="cs-color">Jon Westenberg</em> in University Life</span>
-                           <div class="cs-post-title"><h2><a href="#">Tortor eleifend et interdum rhoncus</a></h2></div>
-                           <span>January 26, 2016</span>
-                          </div>
-                          <div class="cs-media">
-                           <figure><a href="#"><img alt="" src="assets/extra-images/masonry-img-4.jpg"></a></figure>
-                          </div>
-                         </div>
-                    </li>
-                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="cs-blog masonry">
-                          <div class="cs-text">
-                           <div class="cs-post-comments"><span>10</span></div>
-                           <span><em class="cs-color">Jon Westenberg</em> in University Life</span>
-                           <div class="cs-post-title"><h2><a href="#">Tortor eleifend et interdum rhoncus</a></h2></div>
-                           <span>January 26, 2016</span>
-                          </div>
-                          <div class="cs-media">
-                           <figure><a href="#"><img alt="" src="assets/extra-images/masonry-img-4.jpg"></a></figure>
-                          </div>
-                         </div>
-                    </li>
-                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="cs-blog masonry">
-                          <div class="cs-text">
-                           <div class="cs-post-comments"><span>10</span></div>
-                           <span><em class="cs-color">Jon Westenberg</em> in University Life</span>
-                           <div class="cs-post-title"><h2><a href="#">Tortor eleifend et interdum rhoncus</a></h2></div>
-                           <span>January 26, 2016</span>
-                          </div>
-                          <div class="cs-media">
-                           <figure><a href="#"><img alt="" src="assets/extra-images/masonry-img-4.jpg"></a></figure>
-                          </div>
-                         </div>
-                    </li>
-                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="cs-blog masonry">
-                          <div class="cs-text">
-                           <div class="cs-post-comments"><span>10</span></div>
-                           <span><em class="cs-color">Jon Westenberg</em> in University Life</span>
-                           <div class="cs-post-title"><h2><a href="#">Tortor eleifend et interdum rhoncus</a></h2></div>
-                           <span>January 26, 2016</span>
-                          </div>
-                          <div class="cs-media">
-                           <figure><a href="#"><img alt="" src="assets/extra-images/masonry-img-4.jpg"></a></figure>
-                          </div>
-                         </div>
-                    </li>
-                </ul>
+               
 	          </div>
 	        </div>
-            <aside class="page-sidebar col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="widget widget-search">
-                    <div class="widget-title"><h6>Search Articals</h6></div>
-                    <form>
-                      <input type="text" placeholder="Enter Course name...">
-                      <label><input type="submit" value="submit"></label>
-                    </form>
-                </div>
-                <div class="widget widget-categories">
-                    <div class="widget-title"><h6>Event Types</h6></div>
-                    <ul>
-                        <li><a href="#">College of the Arts</a></li>
-                        <li><a href="#">School of Art + Art History</a></li>
-                        <li><a href="#">School of Music</a></li>
-                        <li><a href="#">School of Theatre + Dance</a></li>
-                        <li><a href="#">Current Season</a></li>
-                        <li><a href="#">UF Symphony Orchestra</a></li>
-                        <li><a href="#">University Galleries 2015-16</a></li>
-                        <li><a href="#">Carillon Concert Series</a></li>
-                    </ul>
-                </div>
-                <div class="widget widget-latest-news">
-                    <div class="widget-title"><h6>Latest News</h6></div>
-                    <ul>
-                        
-                        <?php $articlesData = Blog::getNewArticles();
-                        foreach($articlesData as $newarticle){
-                        ?>
-                        
-                        <li>
-                          <div class="cs-media">
-                              <figure><a href="#"><img src="<?php //echo Blog::getImageUrl($newarticle['thumb_image'], true);?>" alt=""></a></figure>
-                          </div>
-                          <div class="cs-text">
-                            <div class="post-title">
-                                <h6><a href="<?php echo Blog::getArticleUrl().$newarticle['url'];?>"><?php echo $newarticle['title'];?></a></h6>
-                                <span class="post-date"><?php echo date("d m y", $newarticle['ctime']); ?></span>
-                            </div>
-                          </div>
-                        </li>
-                        
-                        <?php } ?>
-                    </ul>
-                </div>
-                <div class="widget widget-archive">
-                    <div class="widget-title"><h6>Archive</h6></div>
-                    <div class="cs-select-holder">
-                       <select>
-                          <option>Select Month</option>
-                          <option>Select Month</option>
-                          <option>Select Month</option>
-                          <option>Select Month</option>
-                          <option>Select Month</option>
-                       </select>
-                    </div>
-                </div>
-                <div class="widget widget-tags">
-                    <div class="widget-title"><h6>Tags</h6></div>
-                    <ul>
-                        <li><a href="#">Love</a> </li>
-                        <li><a href="#">Malheur</a> </li>
-                        <li><a href="#">Satire</a> </li>
-                        <li><a href="#">Food</a> </li>
-                        <li><a href="#">Travel</a> </li>
-                        <li><a href="#">Music</a> </li>
-                        <li><a href="#">Short Story</a> </li>
-                        <li><a href="#">History</a> </li>
-                        <li><a href="#">Flint</a> </li>
-                        <li><a href="#">Immigration</a> </li>
-                        <li><a href="#">Religion</a> </li>
-                        <li><a href="#">Spanish</a> </li>
-                        <li><a href="#">Innovation</a> </li>
-                        <li><a href="#">Fly Fishing</a> </li>
-                    </ul>
-                </div>
-            </aside>
+          
 	      </div>
 	    </div>
 	  </div> 
-      <div class="page-section" style="background-color:#f9f9f9; padding:60px 0 40px 0;">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                  <div class="cs-comments">
-                     <div class="cs-section-title"><h3>23 commetns</h3></div>
-                     <ul>
-                       <li>
-                         <div class="thumblist">
-                          <ul>
-                            <li>
-                              <div class="cs-media">
-                                <figure><img alt="" src="assets/extra-images/comment-img1.jpg"></figure>
-                              </div>
-                              <div class="cs-text">
-                              <h6><a href="#">Anant Gaggar</a></h6>
-                                <span class="post-date">2/07/14  Friday 10:20am</span>
-                               <p>Fusce volutpat scelerisque lectus sed semper sollicitudin varius inceptos elit libero, molestie tincidunt velit praesent inceptos. ultrices praesent nisl risus.</p>
-                                <a class="cs-replay-btn" href="#"><i class="icon-forward4"></i>Reply</a>
-                              </div>
-                            </li>
-                          </ul>
-                         </div>
-                         <ul class="children">
-                           <li>
-                             <div class="thumblist">
-                              <ul>
-                                <li>
-                                  <div class="cs-media">
-                                    <figure><img alt="" src="assets/extra-images/comment-img2.jpg"></figure>
-                                  </div>
-                                  <div class="cs-text">
-                                  <h6><a href="#">Vincenzo Petito</a></h6>
-                                    <span class="post-date">2/07/14  Friday 10:20am</span>
-                                   <p>Torquent nullam molestie ultrices primis hac fames risus sed id purus, turpis sit semper imperdiet libero praesent purus vitae torquent, ut sociosqu sodales id sodales faucibus eros litora vivamus posuere mauris. amet cursus risus donec habitant malesuada.</p>
-                                    <a class="cs-replay-btn" href="#"><i class="icon-forward4"></i>Reply</a>
-                                  </div>
-                                </li>
-                              </ul>
-                             </div>
-                             <ul class="children">
-                               <li>
-                                 <div class="thumblist">
-                                  <ul>
-                                    <li>
-                                      <div class="cs-media">
-                                        <figure><img alt="" src="assets/extra-images/comment-img2.jpg"></figure>
-                                      </div>
-                                      <div class="cs-text">
-                                      <h6><a href="#">Vincenzo Petito</a></h6>
-                                        <span class="post-date">2/07/14  Friday 10:20am</span>
-                                       <p>Sed semper sollicitudin varius inceptos elit libero, molestie tincidunt.</p>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                 </div> 
-                               </li>
-                           </ul>
-                           </li>
-                         </ul>
-                       </li>
-                       <li>
-                         <div class="thumblist">
-                          <ul>
-                            <li>
-                              <div class="cs-media">
-                                <figure><img alt="" src="assets/extra-images/comment-img4.jpg"></figure>
-                              </div>
-                              <div class="cs-text">
-                              <h6><a href="#">Anant Gaggar</a></h6>
-                                <span class="post-date">2/07/14  Friday 10:20am</span>
-                               <p>Fusce volutpat scelerisque lectus sed semper sollicitudin varius inceptos elit libero, molestie tincidunt velit praesent inceptos. ultrices praesent nisl risus.</p>
-                                <a class="cs-replay-btn" href="#"><i class="icon-forward4"></i>Reply</a>
-                              </div>
-                            </li>
-                          </ul>
-                         </div>
-                       </li>
-                     </ul>
-                   </div>
-                   <div class="cs-comment-form">
-                     <div class="cs-section-title"><h3>leave us a comment</h3></div>
-                     <div class="form-holder row">
-                       <form>
-                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                           <div class="input-holder">
-                             <input type="text" placeholder="Name *">
-                           </div>
-                         </div>
-                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                           <div class="input-holder">
-                             <input type="text" placeholder="Email *">
-                           </div>
-                         </div>
-                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                           <div class="input-holder">
-                             <input type="text" placeholder="Website">
-                           </div>
-                         </div>
-                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                           <div class="input-holder">
-                             <textarea placeholder="Message"></textarea>
-                           </div>
-                         </div>
-                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="input-button">
-                                <a class="cs-button cs-bgcolor" href="#">Post Comments</a>
-                            </div>
-                         </div>
-                       </form>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
 	</div>
 	<!-- Main End --> 
 	<!-- Footer Start -->

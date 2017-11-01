@@ -36,7 +36,7 @@
                                 ">
                             <img src="<?php echo Slider::getImageUrl($slide['image']);?>" alt="">
                             <div class="carousel-caption">
-                              <h3><?php echo $slide['title'];?></h3>
+                                <h3 style="color: white !important"><?php echo $slide['title'];?></h3>
                               <p><?php echo $slide['text'];?></p>
                             </div>
                           </div>

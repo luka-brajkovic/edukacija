@@ -1,9 +1,9 @@
-<div class="page-section" style="background:#f9fafa;padding-top:62px;margin-bottom:82px;">
+<div class="page-section" style="background:#f9fafa;padding-top:25px;margin-bottom:82px;">
 			<div class="container">
 			  <div class="row">
 			  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="cs-section-title left">
-					  <h2>Seminari</h2>
+					  <h2>Novosti</h2>
 					
 					</div>
               	</div>

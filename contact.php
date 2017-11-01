@@ -1,4 +1,5 @@
 <?php
+$navActive = "contact";
 $languepath = 3;
 require 'library/config.php';
 $request = Request::instance();
@@ -46,7 +47,7 @@ $bcgrupa = "Kontakt";
                 <div class="cs-contact-form view-two">
                   <div class="cs-section-title">
                     <h2>Kontakt Forma</h2>
-                    <p>Ukoliko želite da nam postavite pitanje ili ostavite poruku možete to učiniti putem forme ispod. </p>
+                    <p></p>
                     <?php
                     $is_robot   = $request->getParam('robot');
                     if (!empty($is_robot)):?>
@@ -126,7 +127,7 @@ $bcgrupa = "Kontakt";
             <div class="cs-contact-info view-two">
               <div class="cs-section-title">
                 <h2>Kontakt podaci</h2>
-                <p>Ukoliko želite da nas pozovete ili nađete, možete to učiniti pomoću informacija ispod</p>
+                <p></p>
               </div>
               <ul>
                 <li>

@@ -82,6 +82,7 @@
     case "remove_2":
       
       $id = $request->getParam('id');
+      
       $object = Model::find('slider_slide', $id);
       
       $objectID = $object->slider_id;
@@ -143,10 +144,13 @@
       
       
     case "remove-image-2":
+        
       $id     = $request->getParam('id');
       $object = new View('slider_slide', $id);
+      
       if($object->image) {
-        $path = slider::getImagePath(true) . $object->image;
+        $path = Slider::getImagePath(true) . $object->image;
+
         if(file_exists($path)) {
           unlink($path);
           $object->image = "";

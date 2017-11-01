@@ -10,9 +10,7 @@ if(!Website::isLoggedUser())
 
 $user = Website::getLoggedUserInfo();
 $is_pass =  Course::DidUserpassTest($user['id'], $course_id);
-if($is_pass){
-    $request->redirect(WEB_URL."strana.php?url=vec-ste-polozili-ovaj-test");
-}
+
 $course = Course::getInfo($course_id);
 
 

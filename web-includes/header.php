@@ -128,14 +128,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                        <div class="cs-logo cs-logo-dark">
+                        <div class="cs-logo cs-logo-dark" style="padding-top: 25px">
                             <div class="cs-media">
-                                <figure><a href="index.php"><img src="assets/images/cs-logo.png" alt="" /></a></figure>
+                                <figure><a href="index.php"><img width="300px"src="assets/images/logo.png" alt="" /></a></figure>
                             </div>
                         </div>
                         <div class="cs-logo cs-logo-light">
                             <div class="cs-media">
-                                <figure><a href="index.php"><img src="assets/images/cs-logo-light.png" alt="" /></a></figure>
+                                <figure><a href="index.php"><img src="assets/images/logo.png" alt="" /></a></figure>
                             </div>
                         </div>
                     </div>
@@ -143,27 +143,27 @@
                         <div class="cs-main-nav pull-right">
                             <nav class="main-navigation">
                                 <ul style="margin-top: 10px">
-                                    <li><a href="index.php">Naslovna</a></li>
-                                    <li class=""><a href="<?php echo Page::setPageUrl()."o-nama";?>">O nama</a>
+                                    <li><a <?php echo $navActive=='index'? "style='color: #337ab7 !important'" : ""?> href="index.php">Naslovna</a></li>
+                                    <li><a <?php echo $navActive=='O nama'? "style='color: #337ab7 !important'" : ""?> href="<?php echo Page::setPageUrl()."o-nama";?>">O nama</a>
                                     
                                         
                                     </li>
-                                    <?php if(Website::isLoggedUser()){?>
-                                    <li class=""><a href="<?php echo WEB_URL."courses.php";?>">Kursevi </a>
+                                 
+                                    <li><a <?php echo $navActive=='course'? "style='color: #337ab7 !important'" : ""?> href="<?php echo WEB_URL."courses.php";?>">Kursevi </a>
                                       
                                     </li>
-                                    <?php } ?>
-                                    <li class=""><a href="<?php echo WEB_URL."seminars.php";?>">Seminari</a>
+                                  
+                                    <li class=""><a <?php echo  $navActive=='seminar'? "style='color: #337ab7 !important'" : ""?> href="<?php echo WEB_URL."seminars.php";?>">Seminari</a>
                                        
                                     </li>
-                                    <li><a href="<?php echo WEB_URL."strana.php?url=medjunarodna-saradnja";?>">Međunarodna saradnja</a></li>
-                                    <li><a href="<?php echo WEB_URL."contact.php";?>" >Kontakt</a></li>
+                                    <li><a <?php echo  $navActive=='MEDJUNARODNA SARADNJA'? "style='color: #337ab7 !important'" : ""?> href="<?php echo WEB_URL."strana.php?url=medjunarodna-saradnja";?>">Međunarodna saradnja</a></li>
+                                    <li><a <?php echo  $navActive=='contact'? "style='color: #337ab7 !important'" : ""?> href="<?php echo WEB_URL."contact.php";?>" >Kontakt</a></li>
                                     <li class="cs-search-area" style="margin-top: -10px">
-                                        <div class="cs-menu-slide">
+<!--                                        <div class="cs-menu-slide">
                                             <div class="mm-toggle">
                                                 <i class="icon-align-justify"></i>
                                             </div>            
-                                        </div>
+                                        </div>-->
                                       
                                     </li>
                                 </ul>

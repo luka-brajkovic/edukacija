@@ -1,16 +1,15 @@
 <?php
+$navActive = "course";
 $languepath = 3;
 require 'library/config.php';
 $request = Request::instance();
-if (!Website::isLoggedUser())
-    $request->redirect(WEB_URL);
 
 $page    = $request->getParam('page');
 if($page==0){
     $page =1;
 }
 
-$bcgrupa = "kursevi";
+$bcgrupa = "Kursevi";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +42,7 @@ $bcgrupa = "kursevi";
 	        <div class="page-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	          <div class="row">
 	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	              
+                        <h2>Kursevi</h2><br/> 
 	            </div>
 	            <ul class="cs-courses courses-listing">
                         <?php 
@@ -65,7 +64,9 @@ $bcgrupa = "kursevi";
                             <p><?php echo $course['leed'];?></p>
                             
                                             <div class="pull-left" style="margin-top: 25px">
+                                            <?php if (Website::isLoggedUser()){ ?>    
                                                 <a href="<?php echo Course::getCourseUrl().$course['url'];?>" class="cs-bgcolor cs-buynow add-opacity" style="padding: 5px 9px;color: white"> Više </a>
+                                            <?php } ?>
                                             </div>
             		</div>
                         

@@ -48,7 +48,7 @@ $bcclan = $user['first_name']." ".$user['last_name'];
 	            	  <li class="cs-header">
 	            	    <div class="cs-courses-name"><span>Naziv Kursa</span></div>
 	            	    <div class="cs-courses-date"><span>Položen</span></div>
-	            	    <div class="cs-courses-level"><span>Broj Pokusaja</span></div>
+	            	    <div class="cs-courses-level"><span>Broj Pokušaja</span></div>
 	            	    <div class="cs-price"><span>Preostalo pokušaja</span></div>
 	            	  </li>
                            <?php

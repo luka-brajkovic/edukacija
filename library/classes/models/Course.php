@@ -265,6 +265,7 @@ class Course extends Model {
      $select = $db->select()
      ->from(array('C' => self::$_tableName),"")
      ->joinLeft(array('A' => 'course_question'), 'C.id = A.course_id', '')
+     ->joinLeft(array('B' => 'course_video'), 'C.id = B.course_id', '')
      ->order('C.display_order')
      ->where('is_deleted = 0')
      ->where('type = "course"')
@@ -275,7 +276,8 @@ class Course extends Model {
         'C.image',
         'C.url',
         'C.title',
-        'COUNT(A.id) as a_num'
+        'COUNT(A.id) as a_num',
+        'COUNT(B.id) as b_num'
       ))
       ->group('C.id')
      ;

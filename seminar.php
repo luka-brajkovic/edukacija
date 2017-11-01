@@ -1,4 +1,5 @@
 <?php
+$navActive = "seminar";
 $languepath = 3;
 require 'library/config.php';
 $request = Request::instance();
@@ -15,8 +16,8 @@ $is_on_seminar=TRUE;
 if(!Seminar::IsUserOnSeminar($user_id, $course['id']))
         $is_on_seminar = false;
 
-$bcgrupa = "seminari";
-$bcclan = "seminar - ".$course['title'];
+$bcgrupa = "Seminari";
+$bcclan = "Seminar - ".$course['title'];
 
 
 ?>
@@ -138,25 +139,22 @@ $bcclan = "seminar - ".$course['title'];
 						   
 						</div>
 					</div>
-                                    <?php if(!empty($course['video_url'])){?>
-                                        
-                          <video id="my-video" class="video-js" style="margin-bottom: 15px" controls preload="auto" width="800px" height=""
-                                            poster="<?php echo Course::getImageUrl($course['image']);?>" data-setup="{}">
-                                              <source src="<?php echo $course['video_url'];?>" type='video/mp4'>
-                                              <source src="<?php echo $course['video_url'];?>" type='video/webm'>
-                                              <p class="vjs-no-js">
-                                                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                                                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                                              </p>
-                                         </video>
-                                        <?php } ?>
+                               
                         
                                          <?php if(!empty($course['html_url'])){?>
                           <a style="margin-top: 15px"  class="fancybox fancybox.iframe" href="<?php echo $course['html_url'];?>">Vebinar :<?php echo $course['html_url'];?></a>
                                          <?php } ?>
 					
 					
-               
+                              <?php
+                          $i = 1;
+                          $videos = VideoGallery::getvideoForCourse($course['id']);
+                          foreach ($videos as $video){         
+                          ?>
+                          <a href="videoplaying.php?id=<?php echo $course['id']."&video_id=".$video['id'];?>"  class="fancybox fancybox.iframe" >Video predavanje <?php echo $i++.": ".$video['title']?></a><br/>
+                          <?php 
+                          }
+                          ?>          
               
 	          </div>
 	        </div>

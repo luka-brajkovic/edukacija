@@ -1,4 +1,5 @@
 <?php
+$navActive = "course";
 $languepath = 3;
 require 'library/config.php';
 $request = Request::instance();
@@ -18,8 +19,8 @@ if(!Course::IsUserOnCourse($user_id, $course['id']))
 if(!Course::CanUserBeOnCourse($user_id, $course['id'],$course['display_order']))
     $request->redirect(WEB_URL."strana.php?url=ne-mozete-polagati-ovaj-kurs");
 
-$bcgrupa = "kursevi";
-$bcclan = "kurs - ".$course['title'];
+$bcgrupa = "Kursevi";
+$bcclan = "Kurs - ".$course['title'];
 
 if($course['start_available'] > date("Y-m-d")){
     $request->redirect(WEB_URL."strana.php?url=kurs-jos-uvek-nije-otvoren");
@@ -50,13 +51,12 @@ $is_fancy  = true;
 
 			$('.fancybox').fancybox({
                             padding: 0,
-
-				openEffect : 'elastic',
+                                overlayShow : true,
 				openSpeed  : 150,
                                 width  : 960,
-				closeEffect : 'elastic',
+                                overlayOpacity : 0.5,
+                                overlayColor : '#FFF',
 				closeSpeed  : 150,
-                            
                         });
 
 			/*
@@ -125,7 +125,7 @@ $is_fancy  = true;
                         
                         
                         <h4>Test</h4>
-                            <a href="<?php echo WEB_URL."test.php?course_id=".$course['id']?>"  style="padding: 5px 9px;color: white;<?php if(!$trialsleft) echo 'pointer-events: none;cursor: default;';?>" class="cs-bgcolor cs-buynow add-opacity" ><i class="icon-plus3"></i>Take Test | Number of trials left ( <?php echo $trialsleft;?> )</a>
+                            <a href="<?php echo WEB_URL."test.php?course_id=".$course['id']?>"  style="padding: 5px 9px;color: white;<?php if(!$trialsleft) echo 'pointer-events: none;cursor: default;';?>" class="cs-bgcolor cs-buynow add-opacity" ><i class="icon-plus3"></i>Test | Broj pokušaja( <?php echo $trialsleft;?> )</a>
                     </div>
                 </div>
                 
@@ -145,24 +145,22 @@ $is_fancy  = true;
 						   
 						</div>
 					</div>
-                                        <?php if(!empty($course['video_url'])){?>
-                                        
-                          <video id="my-video" class="video-js" style="margin-bottom: 15px" controls preload="auto" width="800px" height=""
-                                            poster="<?php echo Course::getImageUrl($course['image']);?>" data-setup="{}">
-                                              <source src="<?php echo $course['video_url'];?>" type='video/mp4'>
-                                              <source src="<?php echo $course['video_url'];?>" type='video/webm'>
-                                              <p class="vjs-no-js">
-                                                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                                                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                                              </p>
-                                         </video>
-                                        <?php } ?>
+                                    
                         
                                          <?php if(!empty($course['html_url'])){?>
-                          <a style="margin-top: 15px"  class="fancybox fancybox.iframe" href="<?php echo $course['html_url'];?>">Vebinar :<?php echo $course['html_url'];?></a>
+                          <a style="margin-top: 15px"  class="fancybox fancybox.iframe" href="<?php echo $course['html_url'];?>">Vebinar :<?php echo $course['html_url'];?></a><br/>
+                           
                                          <?php } ?>
-					
-               
+                          
+                          <?php
+                          $i = 1;
+                          $videos = VideoGallery::getvideoForCourse($course['id']);
+                          foreach ($videos as $video){         
+                          ?>
+                          <a href="videoplaying.php?id=<?php echo $course['id']."&video_id=".$video['id'];?>"  class="fancybox fancybox.iframe" >Video predavanje <?php echo $i++.": ".$video['title']?></a><br/>
+                          <?php 
+                          }
+                          ?>              
               
 	          </div>
 	        </div>
@@ -183,6 +181,8 @@ $is_fancy  = true;
 <script src="assets/scripts/jquery.mobile-menu.min.js"></script>
 <!-- Put all Functions in functions.js --> 
 <script src="assets/scripts/functions.js"></script>
+<script>
+</script>
 
 </body>
 </html>

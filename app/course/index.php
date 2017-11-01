@@ -127,6 +127,7 @@
                      
                                                 <a href="<?php echo  APP_URL ."course/cours_user.php?id=" . $calltoaction['id'];?>" class="btn btn-sm btn-info handle"><?php echo "add user to course";?></a>
                                                 <a href="<?php echo  APP_URL ."course/course_questions.php?course_id=" . $calltoaction['id'];?>" class="btn btn-sm btn-info "><?php echo "Questions for course ( " .$calltoaction['a_num']. " )";?></a>
+                                                <a href="<?php echo  APP_URL ."video_gallery/video.php?course_id=" . $calltoaction['id'];?>" class="btn btn-sm btn-info "><?php echo "Course Video ( " .$calltoaction['b_num']. " )";?></a>
                                                 <?php if (!$calltoaction['a_num']){  echo "<a href=". APP_URL ."course/work.php?action=remove&id=" . $calltoaction['id']." class='btn btn-sm btn-danger'>". $lang['table']['remove']."</a>"; }?>
                                                     
                                               </td>

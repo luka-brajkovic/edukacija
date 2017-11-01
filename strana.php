@@ -4,8 +4,8 @@ require 'library/config.php';
 $request = Request::instance();
 $url    = $request->getParam('url');
 $page = Page::getPageByUrl($url);
-$bcgrupa = "strana";
-$bcclan = "strana - ".$page['title'];
+$bcclan = $page['title'];
+$navActive = $page['title'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@ $bcclan = "strana - ".$page['title'];
                         
                            
                             <div class="">
-                                <div class="cs-column-text">
+                                <div class="cs-column-text" style="min-height: 600px">
                                     <h2><?php echo $page['title'];?></h2>
                                     <?php echo $page['text'];?>
                                    
