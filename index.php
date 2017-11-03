@@ -28,7 +28,7 @@ require 'library/config.php';
        
             
             
-        <?php include 'web-includes/kursevi-naslovna.php'; ?>
+        <?php include 'web-includes/novosti-naslovna.php'; ?>
             
          
             

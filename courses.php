@@ -51,7 +51,7 @@ $bcgrupa = "Kursevi";
                         {
                         ?>
                         
-                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 course-list-item">
             		<div class="cs-media">
                             <figure><a href="#"><img style="width: 250px;" src="<?php echo Course::getImageUrl($course['image']);?>" alt=""/></a></figure>
             		</div>
@@ -65,7 +65,7 @@ $bcgrupa = "Kursevi";
                             
                                             <div class="pull-left" style="margin-top: 25px">
                                             <?php if (Website::isLoggedUser()){ ?>    
-                                                <a href="<?php echo Course::getCourseUrl().$course['url'];?>" class="cs-bgcolor cs-buynow add-opacity" style="padding: 5px 9px;color: white"> Više </a>
+                                                <a href="<?php echo Course::getCourseUrl().$course['url'];?>" class="cs-bgcolor cs-buynow add-opacity " > Više </a>
                                             <?php } ?>
                                             </div>
             		</div>

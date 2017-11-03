@@ -8,6 +8,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Open Sans';
+  height: 100%;
 }
 
 h1 {
@@ -21,6 +22,10 @@ h1 {
   overflow: hidden;
   margin: 20px auto 0 auto;
   border-radius: 4px;
+}
+
+.slide {
+  margin-top: 40px;
 }
 
 #slider ul {
@@ -93,4 +98,35 @@ a.control_next {
 
 .black-text-footer {
     color: black !important;
+}
+.article-main-image {
+  float: left;
+  width: 50%;
+  margin: 4px 40px 29px 0;
+}
+.course-list-item {
+  background-color: #f9fafa;
+  padding: 30px !important;
+
+}
+
+.course-list-item a.cs-bgcolor.cs-buynow.add-opacity  {
+  padding: 7px 30px;
+  color: white;
+}
+
+.page-sidebar {
+  background-color: #f9fafa;
+  padding: 20px;
+}
+.page-sidebar h4:nth-of-type(2){
+  margin-top: 30px;
+}
+
+.blue-button {
+    background-color: #207dba;
+    color: white;
+    padding: 5px 9px;
+    margin: 10px 0px;
+    display: inline-block;
 }

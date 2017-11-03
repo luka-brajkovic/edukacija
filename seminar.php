@@ -139,24 +139,25 @@ $bcclan = "Seminar - ".$course['title'];
 						   
 						</div>
 					</div>
-                               
-                        
-                                         <?php if(!empty($course['html_url'])){?>
-                          <a style="margin-top: 15px"  class="fancybox fancybox.iframe" href="<?php echo $course['html_url'];?>">Vebinar :<?php echo $course['html_url'];?></a>
-                                         <?php } ?>
-					
-					
-                              <?php
-                          $i = 1;
-                          $videos = VideoGallery::getvideoForCourse($course['id']);
-                          foreach ($videos as $video){         
-                          ?>
-                          <a href="videoplaying.php?id=<?php echo $course['id']."&video_id=".$video['id'];?>"  class="fancybox fancybox.iframe" >Video predavanje <?php echo $i++.": ".$video['title']?></a><br/>
-                          <?php 
-                          }
-                          ?>          
-              
-	          </div>
+
+
+
+                   <?php if(!empty($course['html_url'])){?>
+                       <a class="fancybox fancybox.iframe blue-button" href="<?php echo $course['html_url'];?>">Vebinar : link</a><br/>
+
+                   <?php } ?>
+
+                   <?php
+                   $i = 1;
+                   $videos = VideoGallery::getvideoForCourse($course['id']);
+                   foreach ($videos as $video){
+                       ?>
+                       <a href="videoplaying.php?id=<?php echo $course['id']."&video_id=".$video['id'];?>"  class="fancybox fancybox.iframe blue-button" >Video predavanje <?php echo $i++.": ".$video['title']?></a><br/>
+                       <?php
+                   }
+                   ?>
+
+               </div>
 	        </div>
 	      </div>
 	    </div>

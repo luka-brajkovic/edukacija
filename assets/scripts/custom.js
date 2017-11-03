@@ -1,4 +1,15 @@
 $( document ).ready(function() {
+
+
+
+        var visina = $("body").height() ;
+        visina = visina - 242;
+        $(".main-section").css("height", visina + "px");
+
+
+
+
+
  $(document).on('submit', '#test', function(e) {
      
     $("input:radio[name='html_radio']").is(":checked")

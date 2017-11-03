@@ -30,8 +30,8 @@ define('UPLOADS_PATH',  realpath(__DIR__) . '/../uploads');
 define('APP_NAME', 'Geviner');
 
 //Applicatiion related things
-define('APP_URL', 'http://46.101.159.15/edukacija/app/');
-define('WEB_URL', 'http://46.101.159.15/edukacija/');
+define('APP_URL', 'http://localhost/edukacija/app/');
+define('WEB_URL', 'http://localhost/edukacija/');
 
 //define('APP_URL', 'http://www.geviner.rs/app/');
 //define('WEB_URL', 'http://www.geviner.rs/');

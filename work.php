@@ -115,7 +115,8 @@ switch($action) {
         $object->save();
         
         foreach ($answers as $a){
-    
+        var_dump($a);
+
         $String = "( ".$user['id']." , ".$a['course_question_id']." , ". $object->id." , '".$a['text']."' , ".$a['is_correct_answer']." , ".$time." , ".$time." )";
          
           $forInsertAnswers = $forInsertAnswers.$String;
@@ -123,7 +124,8 @@ switch($action) {
             if($a != end($answers))
             $forInsertAnswers = $forInsertAnswers." , ";  
         }
-         
+
+        if (!empty($forInsertAnswers))
         $db->query("INSERT INTO user_course_answers (user_id,course_question_id,user_course_attending_id,answer,is_correct,ctime,mtime) VALUES ".$forInsertAnswers);
          
         $request->redirect(WEB_URL."rezultat.php?attending_id=".$object->id);

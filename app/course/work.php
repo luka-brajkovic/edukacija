@@ -129,13 +129,18 @@
       case "add-user-to-course":
       $userid = $request->getParam('userid');
       $courseid = $request->getParam('courseid');
-      $object     = new View("course_user");
-      $object->course_id = $courseid;
-      $object->user_id = $userid;
-      $object->ctime = time();
-      $object->mtime = time();
-      $object->save();
-     
+      $start_date = $request->getParam('start_date');
+          print_r($start_date.""." "." $courseid");
+          print_r($userid[0]);
+          $end_date = $request->getParam('end_date');
+          $object     = new View("course_user");
+          $object->course_id = $courseid;
+          $object->user_id = $userid[0];
+          $object->start_date = $start_date;
+          $object->end_date = $end_date;
+          $object->ctime = time();
+          $object->mtime = time();
+          $object->save();
       break;
   
   
@@ -219,6 +224,8 @@
   
       case "select-all-users-for-course":
       $courseid = $request->getParam('course_id');
+      $start_available = $request->getParam('start_available');
+      $end_available = $request->getParam('end_available');
 
       $usersData  = Course::GetUsersForCourse($courseid);
     
@@ -238,6 +245,9 @@
       $object     = new View("course_user");
       $object->course_id = $courseid;
       $object->user_id = $insert;
+      $object->start_date = $start_available;
+      $object->end_date = $end_available;
+      $object->user_id = $insert;
       $object->ctime = time();
       $object->mtime = time();
       $object->save(); 
@@ -251,11 +261,17 @@
       case "ubdate-user-try":
       $id = $request->getParam('id');
       $num = $request->getParam('num');
-      
+      $end_date = $request->getParam('end-date');
+      $start_date = $request->getParam('start-date');
+
       $user_curse = new View("course_user",$id);
       $user_curse->course_number_of_trys = $num;
+      $user_curse->start_date = $start_date;
+      $user_curse->end_date = $end_date;
       $user_curse->save();
-      var_dump($user_curse);
+      var_dump($start_date);
+      var_dump($end_date);
+
       break;
       
       case "ubdate-user-table":
@@ -265,9 +281,10 @@
           <table class="table table-hover "  parent="">
                                         <input type="hidden" id="table-for-order" value="1" >
                                         <tr class="header">
-                                            <th data-field="id">user ID</th>
-                                            <th data-field="name"><?php echo $lang['table']['name'];?></th>
-                                            <th data-field="name">trays</th>
+                                            <th data-field="id">Korisnciki ID</th>
+                                            <th data-field="name">Ime</th>
+                                            <th data-field="name">Broj pokusaja</th>
+                                            <th data-field="name">Akcija</th>
                                         </tr>
                                         <?php
                                         $usersoncourse = Seminar::GetUsersForCourseAndNumOfTry($id);
@@ -277,7 +294,14 @@
                                      <tr>
                                          <td><?php echo $useroncourse['user_id'];?></td>
                                          <td><?php echo $useroncourse['first_name']." ".$useroncourse['last_name'];?></td>
-                                         <td><input type="number" id="find-<?php echo $useroncourse['id'];?>" value="<?php echo $useroncourse['course_number_of_trys']; ?>"> <button class="btn btn-primary" onclick="updateUserTry(<?php echo $useroncourse['id'];?>);">potvrdi</button></td>
+                                         <td><input type="number" id="find-<?php echo $useroncourse['id'];?>" value="<?php echo $useroncourse['course_number_of_trys']; ?>"> </td>
+                                         <td>
+                                             <label>od</label>
+                                             <input type="date" name="start_available" id="find-start-date-<?=$useroncourse['id']?>" value="<?=$useroncourse['start_date']?>">
+                                             <label>do</label>
+                                             <input type="date" name="end_available" id="find-end-date-<?=$useroncourse['id']?>" value="<?=$useroncourse['end_date']?>">
+                                         </td>
+                                         <td><button class="btn btn-primary" onclick="updateUserTry(<?php echo $useroncourse['id'];?>);">potvrdi</button></td>
                                      </tr>
                                      
                                         <?php

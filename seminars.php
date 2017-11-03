@@ -53,7 +53,7 @@ $bcgrupa = "Seminari";
                         {
                         ?>
                         
-                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 course-list-item">
             		<div class="cs-media">
                             <figure><a href="<?php echo Seminar::getSeminarUrl().$course['url'];?>"><img style="width: 250px;" src="<?php echo Seminar::getImageUrl($course['image']);?>" alt=""/></a></figure>
                              <figcaption><p class="pull-left"><i class="icon-uniF103"></i> <?php echo date( 'd.m.Y ', strtotime( $seminar['start_available'] ));?></p> <p class="pull-right"></p></figcaption>
@@ -68,7 +68,7 @@ $bcgrupa = "Seminari";
                             
                                             <div class="pull-left" style="margin-top: 25px">
                                                 <?php if (Website::isLoggedUser()){ ?>
-                                                <a href="<?php echo Seminar::getSeminarUrl().$course['url'];?>" class="cs-bgcolor cs-buynow add-opacity" style="padding: 5px 9px;color: white"> Više </a>
+                                                <a href="<?php echo Seminar::getSeminarUrl().$course['url'];?>" class="cs-bgcolor cs-buynow add-opacity" > Više </a>
                                                 <?php } ?>
                                             </div>
             		</div>

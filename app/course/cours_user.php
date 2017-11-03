@@ -85,7 +85,7 @@
                                             
                                             
                                         </div>
-                                      
+
                                     </form>
                                     
                                    
@@ -99,7 +99,12 @@
                                            <form action="work.php">
                                            <input type="hidden" value="select-all-users-for-course" name="action" >
                                            <input type="hidden" value="<?php echo $id;?>" name="course_id" >
-                                           <button type="submit" class="btn btn-primary"><?php echo $lang['table']['selectall'];?></button>
+                                               <label> od </label>
+                                               <input type="date" name="start_available" value="<?=date("Y-m-d")?>" id="start_for_all">
+                                               <label> do </label>
+                                               <input type="date" name="end_available" value="<?=date("Y-m-d")?>"  id="end_for_all">
+                                           <button type="submit" class="btn btn-primary">Ubaci sve korisnike u kurs</button>
+
                                            </form>
                                        </div>
                                 </div><!-- /.box-body -->
@@ -108,9 +113,11 @@
                                   <table class="table table-hover "  parent="<?php echo $parentID; ?>">
                                         <input type="hidden" id="table-for-order" value="1" >
                                         <tr class="header">
-                                            <th data-field="id">user ID</th>
-                                            <th data-field="name"><?php echo $lang['table']['name'];?></th>
-                                            <th data-field="name">trays</th>
+                                            <th data-field="id">Korisnikov ID</th>
+                                            <th data-field="name">Ime</th>
+                                            <th data-field="name">Broj pokusaja</th>
+                                            <th data-field="name">Datumsko ogranicenje</th>
+                                            <th data-field="name">Akcija</th>
                                         </tr>
                                         <?php
                                         $usersoncourse = Seminar::GetUsersForCourseAndNumOfTry($id);
@@ -120,8 +127,15 @@
                                      <tr>
                                          <td><?php echo $useroncourse['user_id'];?></td>
                                          <td><?php echo $useroncourse['first_name']." ".$useroncourse['last_name'];?></td>
-                                         <td><input type="number" id="find-<?php echo $useroncourse['id'];?>" value="<?php echo $useroncourse['course_number_of_trys']; ?>"> <button class="btn btn-primary" onclick="updateUserTry(<?php echo $useroncourse['id'];?>);">potvrdi</button></td>
-                                     </tr>
+                                         <td><input type="number" id="find-<?php echo $useroncourse['id'];?>" value="<?php echo $useroncourse['course_number_of_trys']; ?>"> </td>
+                                         <td>
+                                                 <label>od</label>
+                                                 <input type="date" name="start_available" id="find-start-date-<?=$useroncourse['id']?>" value="<?=$useroncourse['start_date']?>">
+                                                 <label>do</label>
+                                                 <input type="date" name="end_available" id="find-end-date-<?=$useroncourse['id']?>" value="<?=$useroncourse['end_date']?>">
+                                         </td>
+                                         <td><button class="btn btn-primary" onclick="updateUserTry(<?php echo $useroncourse['id'];?>);">potvrdi</button></td>
+                                      </tr>
                                      
                                         <?php
                                         }
@@ -151,7 +165,6 @@
             $(function() {        
                 $('#my-select').multiSelect(
                         {
-                            
                             selectableHeader: "<div class='custom-header'>Nemaju Pristup</div>",
                             selectionHeader: "<div class='custom-header'>Imaju Pristup</div>",
                         }        
@@ -160,7 +173,19 @@
             
            $('#my-select').multiSelect({
               afterSelect: function(values){
-                $.ajax({url: "work.php?action=add-user-to-course&courseid=<?php echo $id;?>&userid="+values, success: function(result){ 
+
+                var data = {
+                    'action':'add-user-to-course',
+                    'courseid':<?= $id ?>,
+                    'userid':values,
+                    'start_date':$('#start_for_all').val(),
+                    'end_date':$('#end_for_all').val(),
+                };
+
+                $.ajax({
+                    url: "work.php",
+                    data:data,
+                    success: function(result){
                     updateTable();    
               }});
             
@@ -175,13 +200,34 @@
         
         function updateUserTry(id){
                num = $('#find-'+id).val();
-               $.ajax({url: "work.php?action=ubdate-user-try&id="+id+"&num="+num, success: function(result){
+               start_date = $('#find-start-date-'+id).val();
+               end_date = $('#find-end-date-'+id).val();
+
+            
+               var data = {
+                   'id':id,
+                   'action':'ubdate-user-try',
+                   'num':num,
+                   'start-date':start_date,
+                   'end-date':end_date,
+               }
+
+               $.ajax({url: "work.php",
+                       data:data,
+                        success: function(result){
                        console.log(result);
               }});
         }
         
         function updateTable(){
-              $.ajax({url: "work.php?action=ubdate-user-table&id=<?php echo $id;?>", success: function(result){
+              var data = {
+                  'action':'ubdate-user-table',
+                  'id':<?= $id ?>,
+
+              }
+              $.ajax({url: "work.php",
+                  data:data,
+                  success: function(result){
                        $("#update-user").html(result);
               }});
         }

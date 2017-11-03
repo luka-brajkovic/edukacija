@@ -109,9 +109,11 @@ class Seminar extends Model {
         'C.id',
         'C.user_id',
         'C.course_number_of_trys',
+        'C.start_date',
+        'C.end_date',
         'A.first_name',
         'A.last_name',
-        
+
       ))
       ;
     $data = $select->query()->fetchAll();

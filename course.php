@@ -14,21 +14,23 @@ $course = Course::getCourseByUrl($url);
 if(!Course::IsUserOnCourse($user_id, $course['id']))
     $request->redirect(WEB_URL."strana.php?url=nemate-pristup-ovom-kursu");
 
-
-
 if(!Course::CanUserBeOnCourse($user_id, $course['id'],$course['display_order']))
     $request->redirect(WEB_URL."strana.php?url=ne-mozete-polagati-ovaj-kurs");
 
 $bcgrupa = "Kursevi";
 $bcclan = "Kurs - ".$course['title'];
 
-if($course['start_available'] > date("Y-m-d")){
+$allowDates = Course::UserStartEndCourse($user_id,$course['id']);
+
+
+if($allowDates['start_date'] > date("Y-m-d")){
     $request->redirect(WEB_URL."strana.php?url=kurs-jos-uvek-nije-otvoren");
 }
-if($course['end_available'] < date("Y-m-d")){
+if($allowDates['end_date'] < date("Y-m-d")){
     $request->redirect(WEB_URL."strana.php?url=kurs-je-zatvoren");
 }
-$is_fancy  = true;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +150,7 @@ $is_fancy  = true;
                                     
                         
                                          <?php if(!empty($course['html_url'])){?>
-                          <a style="margin-top: 15px"  class="fancybox fancybox.iframe" href="<?php echo $course['html_url'];?>">Vebinar :<?php echo $course['html_url'];?></a><br/>
+                          <a class="fancybox fancybox.iframe blue-button" href="<?php echo $course['html_url'];?>">Vebinar : link</a><br/>
                            
                                          <?php } ?>
                           
@@ -157,8 +159,8 @@ $is_fancy  = true;
                           $videos = VideoGallery::getvideoForCourse($course['id']);
                           foreach ($videos as $video){         
                           ?>
-                          <a href="videoplaying.php?id=<?php echo $course['id']."&video_id=".$video['id'];?>"  class="fancybox fancybox.iframe" >Video predavanje <?php echo $i++.": ".$video['title']?></a><br/>
-                          <?php 
+                          <a href="videoplaying.php?id=<?php echo $course['id']."&video_id=".$video['id'];?>"  class="fancybox fancybox.iframe blue-button" >Video predavanje <?php echo $i++.": ".$video['title']?></a><br/>
+                          <?php
                           }
                           ?>              
               

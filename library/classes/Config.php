@@ -8,7 +8,7 @@ class Config {
         'db' => array(
             'host'     => 'localhost',
             'username' => 'root',
-            'password' => 'yvdv217w',
+            'password' => '',
             'dbname'   => 'edukacija',
             'charset' => 'UTF8'
         ),

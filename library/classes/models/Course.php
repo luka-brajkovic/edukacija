@@ -3,8 +3,11 @@
 class Course extends Model {
   
   static protected $_tableName = "course";
-  
- 
+  public static $_session_test_key="TEST_STARTED";
+
+
+
+
   public static function getImageUrl($image) {
    try {
     if($image && is_file(IMAGES_PATH . "/course/" . $image)) {
@@ -536,8 +539,28 @@ class Course extends Model {
     ;
 
 
+
      return $select->query()->fetch()? TRUE : FALSE;
     }
+
+    public static function UserStartEndCourse($user_id,$course_id) {
+
+        $db   = Database::instance();
+        $select = $db->select()
+            ->from("course_user")
+            ->where('course_id = ?', $course_id)
+            ->where('user_id = ?', $user_id)
+        ;
+        $data = $select->query()->fetch();
+
+        $data = array("start_date"=>$data['start_date'],"end_date"=>$data['end_date']);
+
+
+        return $data;
+    }
+
+
+
 
     public static function getNexDisplayOrder() {
 
@@ -623,6 +646,16 @@ class Course extends Model {
     }
 
 
+    public static function SessionStartTest($user_id,$course_id)
+    {
+      return $_SESSION[self::$_session_test_key][$user_id][$course_id]= time()+60*30;
+    }
+
+
+    public static function SessionStartTestGet($user_id,$course_id)
+    {
+       return $_SESSION[self::$_session_test_key][$user_id][$course_id];
+    }
 
 
 }

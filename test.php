@@ -41,17 +41,71 @@ if($course['type']=="course"){
 }
 
 
+
+
+
 $testData = Course::getAllDataForTest($course_id);
+$active_sesion = Course::SessionStartTestGet($user['id'],$course_id);
 
+if (!$active_sesion){
+    $x = Course::SessionStartTest($user['id'],$course_id);
+    $time_left = $x - time();
+}else{
+    $time_left = $active_sesion - time();
+}
 
+if ($time_left<1){
+    $active_sesion = Course::SessionStartTest($user['id'],$course_id);
+    $time_left = $active_sesion - time();
+}
+
+    var_dump($time_left);
 
 $bcclan = $course['title']." - test";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title><?php echo "test - ".$course['title'];?></title>
+
+    <script>
+        function startTimer(duration, display) {
+            var start = Date.now(),
+                diff,
+                minutes,
+                seconds;
+            function timer() {
+                // get the number of seconds that have elapsed since
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
+                console.log(diff);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (diff <= 0) {
+                    clearInterval(refreshIntervalId);
+                    submit_me_after_time();
+                    alert("vreme isteklo");
+                }
+            };
+
+            var refreshIntervalId =  setInterval(timer, 1000);
+
+
+        }
+
+        window.onload = function () {
+            var fiveMinutes = <?=$time_left?>,
+                display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+
+        };
+    </script>
 <?php include 'web-includes/head.php'; ?>
 </head>
 <body class="wp-smartstudy cs-blog-detail">
@@ -80,14 +134,18 @@ $bcclan = $course['title']." - test";
 					<div id="cs-about" class="cs-about-courses">
 						<div class="row">
 						      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                                          <div class="cs-section-title"><h3><?php echo $course['title'];?></h3></div>
+                                  <div class="cs-section-title"><h3><?php echo $course['title'];?> </h3>
+                                  <br/>
+                                  Preostalo vremena : <span id="time"></span>
+                                  </div>
 							<?php echo $course['test_instruction'];?>
 							</div>
-						   
+
                                                    
                                                     
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 30px;">
-                                                        <form action="work.php?action=save-answers" method="POST" id="test" id="test">
+                                                        <form action="work.php" method="POST" id="test" id="test">
+                                                            <input type="hidden" value="save-answers" name="action">
                                                             <input type="hidden" value="<?php echo $course_id;?>" name="course_id">
                                                             <input type="hidden" value="<?php echo $course['url'];?>" name="course_url">
                                                      <?php
@@ -115,8 +173,8 @@ $bcclan = $course['title']." - test";
                                                             
 						    	</ul>
                                                         <?php }} ?>
-                                                        <input class="cs-bgcolor" type="submit" value="ZAVRSI" style="border: 0 none;color: #fff !important;width: 168px;height: 45px;font-size: 12px; font-weight: 600;"/>
-                                                        <a href="<?php echo Course::getCourseUrl().$course['url']?>"  style="padding: 8px 37px;color: white;   display: inline-block;" class="cs-bgcolor cs-buynow add-opacity pull-right"  >OTKAŽI</a>
+                                                        <input class="cs-bgcolor" type="submit" id="zavrsi_dugme" value="ZAVRSI" style="border: 0 none;color: #fff !important;width: 168px;height: 45px;font-size: 12px; font-weight: 600;"/>
+
                                                         </form>
 						    </div>
                                                     
@@ -141,9 +199,9 @@ $bcclan = $course['title']." - test";
 	<!-- Footer End --> 
 </div>
 
-<script>
-setInterval(submit_me, 1800000); // (1000 * 60 * 10 = 600000)
-function submit_me() {
+<script>// (1000 * 60 * 10 = 600000)
+    var kliknuto_zavrsi = false;
+function submit_me_after_time() {
 
     
     
@@ -159,13 +217,84 @@ function submit_me() {
                
                 $('.ne-znam'+j).attr('checked', 'checked');
             }
-            
-            
         }
-    
+
+
+    kliknuto_zavrsi = true;
     $('#test').submit();
 
+
+
 }
+
+    function submit_me() {
+
+
+
+        var i = $("#noq").val();
+
+
+        for (var j = 0 ; j < i; j++) {
+
+            if($(".testr"+j).is(":checked")){
+
+            }
+            else{
+
+                $('.ne-znam'+j).attr('checked', 'checked');
+            }
+        }
+
+        //$('#test').submit();
+
+        $.ajax({
+            url: 'work.php',
+            type: 'POST',
+            data: $('#test').serialize(),
+            success: function(result) {
+                // ... Process the result ...
+            }
+        });
+
+    }
+
+
+
+
+    $(document).ready(function(){
+
+        jQuery('#zavrsi_dugme').click(function(){
+           kliknuto_zavrsi = true;
+                $(window).unbind();
+        });
+
+
+
+    $('a').on('mouseleave', function () {
+            $(window).on('beforeunload', function(){
+                return 'Ako izadjete vasi odgovorice biti predati';
+            });
+        });
+    });
+
+
+
+    $(window).on('beforeunload', function(){
+        return 'Ako izadjete vasi odgovorice biti predati';
+    });
+
+
+
+
+
+    $(window).on('unload', function(){
+
+        if(!kliknuto_zavrsi) {
+            submit_me();
+        }
+
+    });
+
 </script>
 <script src="assets/scripts/responsive.menu.js"></script> 
 <script src="assets/scripts/custom.js"></script> 
